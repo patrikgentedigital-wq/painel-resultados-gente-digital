@@ -13,6 +13,9 @@ O workflow `PAINEL - Sync IXC para Supabase (MVP)` foi arquivado e está
 inativo. O histórico dele permanece disponível para rollback, mas ele não deve
 ser reativado enquanto o workflow CEO estiver operando.
 
+Frontend em produção:
+[`painel-resultados-gente-digital.vercel.app`](https://painel-resultados-gente-digital.vercel.app)
+
 ## Ordem obrigatória dos dados
 
 ```text
@@ -96,7 +99,7 @@ para uma visão executiva.
 ## Pendências externas
 
 - e-mail da conta real do CEO para testar OTP;
-- publicação do frontend em um domínio/host escolhido;
+- domínio personalizado, caso a empresa queira substituir o endereço Vercel;
 - validação dos indicadores com a área financeira e operacional;
 - eventual integração futura com Opa Suite, WhatsApp ou monitoramento;
 - fonte de custos caso o painel passe a exibir lucro.

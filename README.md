@@ -49,6 +49,8 @@ A correção de saúde pública da view está em
 `supabase/migrations/20260825221000_dashboard_public_health.sql`.
 Os campos executivos, os estados de qualidade e o fechamento de sincronização
 estão em `supabase/migrations/20260825222348_ceo_executive_snapshot.sql`.
+O bloqueio explícito do privilégio herdado da view está em
+`supabase/migrations/20260825232028_revoke_dashboard_public_grant.sql`.
 
 ## Integração confirmada
 
@@ -73,6 +75,12 @@ verificação no banco confirmou sincronizações finalizadas, snapshot do perí
 No período consultado, o IXC não retornou dados financeiros utilizáveis; o
 painel exibe isso como `unavailable`, sem apresentar `R$ 0,00` como se fosse
 resultado financeiro confirmado.
+
+Frontend publicado em produção:
+[`painel-resultados-gente-digital.vercel.app`](https://painel-resultados-gente-digital.vercel.app)
+
+O deploy de produção foi verificado com HTTP 200 e corresponde ao commit
+`22dfa86`.
 
 ## Limitações conhecidas
 
