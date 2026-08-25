@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="app-config.js" defer></script>
     <script src="dashboard.js" defer></script>
   </head>
   <body data-active-page="visao-geral">
@@ -30,16 +31,19 @@
         <div class="login-panel__content">
           <span class="eyebrow">Acesso restrito</span>
           <h1 id="login-title">Acesse o Painel de Resultados</h1>
-          <p>Entre com sua conta corporativa. Nesta entrega, o acesso é apenas demonstrativo.</p>
+          <p>Use seu e-mail corporativo. Enviaremos um código de acesso sem criar contas públicas.</p>
           <form id="login-form" novalidate>
             <label for="login-email">E-mail corporativo</label>
             <input id="login-email" type="email" autocomplete="username" placeholder="nome@gentedigital.com.br" />
-            <label for="login-password">Senha</label>
-            <input id="login-password" type="password" autocomplete="current-password" placeholder="Digite sua senha" />
-            <p class="form-error" data-login-error role="alert" hidden>Informe e-mail e senha para continuar.</p>
-            <button class="button button--primary button--wide" type="submit">Entrar</button>
+            <div id="login-code-group" hidden>
+              <label for="login-code">Código recebido por e-mail</label>
+              <input id="login-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Digite o código" />
+            </div>
+            <p class="form-error" data-login-error role="alert" hidden></p>
+            <p class="auth-status" data-login-status role="status" hidden></p>
+            <button class="button button--primary button--wide" data-login-submit type="submit">Enviar código</button>
           </form>
-          <p class="login-footnote">Protótipo local · nenhuma credencial é transmitida</p>
+          <p class="login-footnote">Acesso por OTP · dados agregados protegidos por Supabase Auth</p>
         </div>
       </div>
     </section>
@@ -185,7 +189,7 @@
                 <span class="status-light status-light--good" aria-hidden="true"></span>
                 <div>
                   <strong>Última sincronização</strong>
-                  <span>25/08/2026, 16:32 · <span data-period-freshness>Dados demonstrativos</span></span>
+                  <span><span data-live-updated>Última sincronização pendente</span> · <span data-period-freshness>Dados demonstrativos</span></span>
                 </div>
               </div>
             </div>
@@ -194,11 +198,11 @@
 
             <section class="pulse-panel" aria-labelledby="pulse-title">
               <div class="pulse-heading">
-                <div>
-                  <span class="eyebrow eyebrow--on-dark">Linha de Pulso da Base</span>
-                  <h2 id="pulse-title">Crescimento com pressão nos planos</h2>
-                </div>
-                <span class="demo-chip">DADOS DEMONSTRATIVOS</span>
+              <div>
+                <span class="eyebrow eyebrow--on-dark">Linha de Pulso da Base</span>
+                <h2 id="pulse-title">Crescimento, caixa e capacidade de resposta</h2>
+              </div>
+                <span class="demo-chip" data-live-badge>AGUARDANDO SNAPSHOT</span>
               </div>
               <div class="pulse-track" aria-label="Resumo operacional conectado">
                 <button
@@ -206,47 +210,47 @@
                   type="button"
                   data-open-drawer
                   data-drawer-title="Crescimento da base"
-                  data-drawer-copy="994 ativações menos 395 cancelamentos resultam em crescimento líquido demonstrativo de 599 contratos."
+                  data-drawer-copy="O crescimento líquido é calculado a partir das ativações e cancelamentos normalizados do IXC no período."
                 >
                   <span class="pulse-index">01</span>
                   <span class="pulse-label">Crescimento</span>
-                  <strong>+599</strong>
-                  <small>994 ativações · 395 cancelamentos</small>
+                  <strong data-live-net-additions>—</strong>
+                  <small data-live-movement-copy>Aguardando leitura do IXC.</small>
                 </button>
                 <button
                   class="pulse-node pulse-node--positive"
                   type="button"
                   data-open-drawer
                   data-drawer-title="Saldo financeiro"
-                  data-drawer-copy="O saldo demonstrativo considera a receita incorporada pelas ativações menos a receita perdida pelos cancelamentos."
+                  data-drawer-copy="Recebimentos, previsão, saldo em aberto e cobrança efetiva só aparecem quando o IXC retorna a base financeira válida."
                 >
                   <span class="pulse-index">02</span>
                   <span class="pulse-label">Financeiro</span>
-                  <strong>+R$ 63 mil</strong>
-                  <small>saldo de ativações e cancelamentos</small>
+                  <strong data-live-received>—</strong>
+                  <small data-live-finance-copy>Aguardando base financeira.</small>
                 </button>
                 <button
                   class="pulse-node pulse-node--warning"
                   type="button"
                   data-open-drawer
-                  data-drawer-title="Sinais de risco"
-                  data-drawer-copy="Inadimplência, mudança sem cobertura e insatisfação com a conexão são os principais sinais demonstrativos deste período."
+                  data-drawer-title="Pressão operacional"
+                  data-drawer-copy="O backlog soma O.S. e atendimentos abertos. A prioridade cresce quando há registros vencidos."
                 >
                   <span class="pulse-index">03</span>
                   <span class="pulse-label">Risco</span>
-                  <strong>3 sinais</strong>
-                  <small>exigem acompanhamento</small>
+                  <strong data-live-overdue-operations>—</strong>
+                  <small data-live-operational-state>Dados indisponíveis</small>
                 </button>
                 <button
                   class="pulse-node"
                   type="button"
                   data-open-drawer
                   data-drawer-title="Atualização dos dados"
-                  data-drawer-copy="O protótipo simula uma carga concluída há oito minutos. Em produção, o detalhe virá dos workflows do n8n."
+                  data-drawer-copy="A atualização vem do workflow do n8n, que consulta o IXC e grava apenas agregados e eventos sanitizados no Supabase."
                 >
                   <span class="pulse-index">04</span>
                   <span class="pulse-label">Dados</span>
-                  <strong>há 8 min</strong>
+                  <strong data-live-sync-age>—</strong>
                   <small>IXC → n8n → Supabase</small>
                 </button>
               </div>
@@ -258,64 +262,88 @@
                   <span>Base ativa atual</span>
                   <span class="source-tag">IXC</span>
                 </div>
-                <strong>—</strong>
-                <p>Disponível após a primeira sincronização real.</p>
+                <strong data-live-active-base>—</strong>
+                <p>Contratos ativos identificados no IXC.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Ativações</span>
                   <span class="trend trend--up">↑ 18%</span>
                 </div>
-                <strong>994</strong>
-                <p>142 por mês, em média.</p>
+                <strong data-live-activations>—</strong>
+                <p data-live-activation-copy>Aguardando snapshot.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Cancelamentos</span>
                   <span class="trend trend--down">↓ 42%</span>
                 </div>
-                <strong>395</strong>
-                <p>56 por mês, em média.</p>
+                <strong data-live-cancellations>—</strong>
+                <p data-live-cancellation-copy>Aguardando snapshot.</p>
               </article>
               <article class="kpi-card kpi-card--accent">
                 <div class="kpi-topline">
                   <span>Crescimento líquido</span>
                   <span class="source-tag source-tag--dark">n8n</span>
                 </div>
-                <strong>+599</strong>
-                <p>Resultado acumulado do período.</p>
+                <strong data-live-net-additions>—</strong>
+                <p>Ativações menos cancelamentos.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Total recebido</span>
-                  <span class="trend trend--up">98%</span>
+                <span class="trend" data-live-collection-rate>—</span>
                 </div>
-                <strong class="kpi-currency">R$ 3,99 mi</strong>
-                <p>de R$ 4,06 milhões previstos.</p>
+                <strong class="kpi-currency" data-live-received-money>—</strong>
+                <p data-live-due-copy>Aguardando base financeira.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Inadimplência</span>
                   <span class="trend trend--up">↓ 1 p.p.</span>
                 </div>
-                <strong>2%</strong>
-                <p>R$ 69.989,31 não recebidos.</p>
+                <strong data-live-delinquency>—</strong>
+                <p data-live-outstanding-copy>Sem base financeira confiável.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Saldo comercial</span>
                   <span class="trend trend--up">Positivo</span>
                 </div>
-                <strong class="kpi-currency">+R$ 63 mil</strong>
-                <p>ativações menos cancelamentos.</p>
+                <strong data-live-churn>—</strong>
+                <p>Cancelamentos sobre a base ativa.</p>
               </article>
               <article class="kpi-card kpi-card--risk">
                 <div class="kpi-topline">
                   <span>Saldo de planos</span>
                   <span class="trend trend--risk">Atenção</span>
                 </div>
-                <strong class="kpi-currency">-R$ 1.521,95</strong>
-                <p>32 upgrades · 79 downgrades.</p>
+                <strong class="kpi-currency" data-live-plan-delta>—</strong>
+                <p data-live-plan-copy>Aguardando alterações de plano.</p>
+              </article>
+              <article class="kpi-card kpi-card--signal">
+                <div class="kpi-topline">
+                  <span>Títulos vencidos</span>
+                  <span class="source-tag">IXC</span>
+                </div>
+                <strong data-live-overdue-titles>—</strong>
+                <p>Quantidade em atraso na base financeira.</p>
+              </article>
+              <article class="kpi-card kpi-card--signal">
+                <div class="kpi-topline">
+                  <span>Backlog operacional</span>
+                  <span class="source-tag">O.S. + suporte</span>
+                </div>
+                <strong data-live-open-operations>—</strong>
+                <p>Registros abertos aguardando tratamento.</p>
+              </article>
+              <article class="kpi-card kpi-card--signal">
+                <div class="kpi-topline">
+                  <span>Backlog vencido</span>
+                  <span class="trend trend--risk">Ação</span>
+                </div>
+                <strong data-live-overdue-operations>—</strong>
+                <p>O.S. e atendimentos fora da janela.</p>
               </article>
             </div>
 
@@ -331,17 +359,17 @@
                     <span><i class="legend-dot legend-dot--black"></i> Cancelamentos</span>
                   </div>
                 </div>
-                <div class="bar-chart" role="img" aria-label="Ativações e cancelamentos de janeiro a julho de 2026. Os valores somam 994 ativações e 395 cancelamentos.">
+                <div class="bar-chart" data-live-chart role="img" aria-label="Ativações e cancelamentos mensais do período selecionado.">
                   <div class="chart-axis"><span>160</span><span>120</span><span>80</span><span>40</span><span>0</span></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 77.5%"></i><i class="bar bar--cancellation" style="--height: 38.1%"></i></div><span>Jan</span><small>+63</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 82.5%"></i><i class="bar bar--cancellation" style="--height: 36.3%"></i></div><span>Fev</span><small>+74</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 88.1%"></i><i class="bar bar--cancellation" style="--height: 34.4%"></i></div><span>Mar</span><small>+86</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 93.8%"></i><i class="bar bar--cancellation" style="--height: 40%"></i></div><span>Abr</span><small>+86</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 91.3%"></i><i class="bar bar--cancellation" style="--height: 32.5%"></i></div><span>Mai</span><small>+94</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 95.6%"></i><i class="bar bar--cancellation" style="--height: 31.9%"></i></div><span>Jun</span><small>+102</small></div>
-                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 92.5%"></i><i class="bar bar--cancellation" style="--height: 33.8%"></i></div><span>Jul</span><small>+94</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
+                  <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
                 </div>
-                <p class="chart-note">Série mensal ilustrativa, ajustada aos totais da apresentação. Será substituída pelos eventos reais do IXC.</p>
+                <p class="chart-note" data-live-chart-note>Série mensal será preenchida pelos eventos normalizados do IXC.</p>
               </article>
 
               <article class="panel" aria-labelledby="priority-title">
@@ -408,13 +436,13 @@
 
               <article class="panel" aria-labelledby="receipts-title">
                 <div class="panel-heading panel-heading--tight">
-                  <div><span class="panel-kicker">Recebimentos</span><h2 id="receipts-title">R$ 3,99 mi recebidos</h2></div>
-                  <span class="trend trend--up">98%</span>
+                  <div><span class="panel-kicker">Recebimentos</span><h2 id="receipts-title" data-live-received-money>—</h2></div>
+                  <span class="trend" data-live-collection-rate>—</span>
                 </div>
                 <div class="money-stack">
-                  <div class="money-row"><div><span>Recebido</span><strong>R$ 3.993.129,91</strong></div><span>98%</span></div>
-                  <div class="stack-bar" aria-label="98 por cento recebido e 2 por cento não recebido"><i class="stack-bar__received"></i><i class="stack-bar__pending"></i></div>
-                  <div class="money-row money-row--muted"><div><span>Não recebido</span><strong>R$ 69.989,31</strong></div><span>2%</span></div>
+                  <div class="money-row"><div><span>Recebido</span><strong data-live-received-money>—</strong></div><span data-live-collection-rate>—</span></div>
+                  <div class="stack-bar" aria-label="Proporção entre recebido e não recebido"><i class="stack-bar__received" data-live-received-stack></i><i class="stack-bar__pending" data-live-pending-stack></i></div>
+                  <div class="money-row money-row--muted"><div><span>Não recebido</span><strong data-live-outstanding-money>—</strong></div><span data-live-delinquency>—</span></div>
                 </div>
                 <button class="panel-action" type="button" data-page-target="financeiro">Abrir visão financeira <span aria-hidden="true">→</span></button>
               </article>
@@ -425,11 +453,11 @@
                   <span class="severity severity--warning">Atenção</span>
                 </div>
                 <div class="plan-balance">
-                  <div><span>Upgrades</span><strong>32</strong><small>+R$ 539,12</small></div>
+                  <div><span>Upgrades</span><strong data-live-upgrades>—</strong><small>valor a validar</small></div>
                   <span class="balance-versus" aria-hidden="true">×</span>
-                  <div><span>Downgrades</span><strong>79</strong><small>-R$ 2.061,07</small></div>
+                  <div><span>Downgrades</span><strong data-live-downgrades>—</strong><small>valor a validar</small></div>
                 </div>
-                <div class="negative-balance"><span>Saldo líquido</span><strong>-R$ 1.521,95</strong></div>
+                <div class="negative-balance"><span>Saldo líquido</span><strong data-live-plan-delta>—</strong></div>
                 <button class="panel-action panel-action--dark" type="button" data-page-target="planos">Investigar migrações <span aria-hidden="true">→</span></button>
               </article>
             </div>
@@ -564,9 +592,9 @@
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Fluxo de dados</span><h1 id="integrations-title">Integrações e Sincronização</h1><p>Estado sanitizado de cada etapa, sem expor credenciais.</p></div><button class="button button--outline" type="button" data-toast-message="Atualização demonstrativa solicitada.">Atualizar estado</button></div>
             <section class="data-pipeline" aria-label="Pipeline de integração"><div class="pipeline-node pipeline-node--source"><span>Fonte oficial</span><strong>IXC Soft</strong><small>Leitura programada</small></div><i aria-hidden="true">→</i><div class="pipeline-node"><span>Orquestração</span><strong>n8n</strong><small>Paginação &amp; normalização</small></div><i aria-hidden="true">→</i><div class="pipeline-node"><span>Histórico</span><strong>Supabase</strong><small>RLS &amp; indicadores</small></div><i aria-hidden="true">→</i><div class="pipeline-node pipeline-node--output"><span>Decisão</span><strong>Painel</strong><small>Leitura por papel</small></div></section>
             <div class="integration-grid">
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">IXC</span><span class="status-badge status-badge--positive">Conectado · demo</span></div><h2>IXC Soft</h2><dl><div><dt>Última leitura</dt><dd>há 8 min</dd></div><div><dt>Registros</dt><dd>2.814</dd></div><div><dt>Latência</dt><dd>1,8 s</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do IXC Soft">Ver estado sanitizado</button></article>
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">n8n</span><span class="status-badge status-badge--positive">Ativo · demo</span></div><h2>n8n</h2><dl><div><dt>Workflows ativos</dt><dd>4</dd></div><div><dt>Última execução</dt><dd>8 min</dd></div><div><dt>Falhas recentes</dt><dd>1</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Execuções do n8n">Ver execuções</button></article>
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">SB</span><span class="status-badge status-badge--positive">Saudável · demo</span></div><h2>Supabase</h2><dl><div><dt>Última gravação</dt><dd>há 8 min</dd></div><div><dt>Fila</dt><dd>0 pendentes</dd></div><div><dt>Rejeitados</dt><dd>5</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do Supabase">Ver consolidação</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">IXC</span><span class="status-badge status-badge--positive" data-live-ixc-status>Conectado · demo</span></div><h2>IXC Soft</h2><dl><div><dt>Última leitura</dt><dd data-live-ixc-read>há 8 min</dd></div><div><dt>Registros</dt><dd data-live-records>2.814</dd></div><div><dt>Latência</dt><dd>via n8n</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do IXC Soft">Ver estado sanitizado</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">n8n</span><span class="status-badge status-badge--positive" data-live-n8n-status>Ativo · demo</span></div><h2>n8n</h2><dl><div><dt>Workflow</dt><dd>Sync IXC → painel</dd></div><div><dt>Última execução</dt><dd data-live-n8n-run>pendente</dd></div><div><dt>Estado</dt><dd data-live-n8n-state>aguardando publicação</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Execuções do n8n">Ver execuções</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">SB</span><span class="status-badge status-badge--positive" data-live-supabase-status>Saudável · demo</span></div><h2>Supabase</h2><dl><div><dt>Última gravação</dt><dd data-live-supabase-write>há 8 min</dd></div><div><dt>Fila</dt><dd>0 pendentes</dd></div><div><dt>Leitura</dt><dd>RLS ativa</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do Supabase">Ver consolidação</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">OPA</span><span class="status-badge">Não configurado</span></div><h2>Opa Suite</h2><p>Canal opcional para filas internas e comunicação autorizada.</p><button type="button" disabled>Requer autorização</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">WA</span><span class="status-badge">Não configurado</span></div><h2>WhatsApp</h2><p>Mensagens devem passar por aprovação humana antes do envio.</p><button type="button" disabled>Requer autorização</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">NOC</span><span class="status-badge">Não configurado</span></div><h2>Monitoramento de rede</h2><p>Zabbix, Grafana ou OLT para telemetria técnica real.</p><button type="button" disabled>Requer configuração</button></article>

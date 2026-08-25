@@ -862,6 +862,14 @@ main {
   background: transparent;
 }
 
+.kpi-card--signal {
+  background: var(--surface-soft);
+}
+
+.kpi-card--signal > strong {
+  color: var(--ink-soft);
+}
+
 .kpi-topline {
   display: flex;
   align-items: center;
@@ -2750,6 +2758,15 @@ tbody tr:hover {
 .form-error {
   margin: 0;
   color: var(--danger) !important;
+  font-size: 0.65rem !important;
+}
+
+.auth-status {
+  margin: 0;
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: var(--info-soft);
+  color: var(--info) !important;
   font-size: 0.65rem !important;
 }
 
