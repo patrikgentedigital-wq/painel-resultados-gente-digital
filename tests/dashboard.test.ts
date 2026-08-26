@@ -19,6 +19,7 @@ type DashboardModel = {
     query?: string,
   ) => T[];
   getComparisonNotice?: (currentPeriod: string, comparisonPeriod: string) => string;
+  formatAuthError?: (error: unknown, fallback: string) => string;
   initDashboard?: (document: Document, window: Window) => void;
 };
 
@@ -58,9 +59,23 @@ describe("contrato do Painel de Resultados", () => {
     const { dom } = loadPrototype();
     const document = dom.window.document;
 
-    expect(document.querySelector("[data-login-submit]")?.textContent).toContain("Enviar link");
+    expect(document.querySelector("[data-login-submit]")?.textContent).toContain("Entrar com senha");
+    expect(document.querySelector("[data-login-link]")?.textContent).toContain("Enviar link");
+    expect(document.querySelector("#login-password")).not.toBeNull();
     expect(document.querySelector(".login-footnote")?.textContent).toContain("link de uso único");
-    expect(document.querySelector("#login-code-group")).toBeNull();
+    expect(document.querySelector(".login-footnote")?.textContent).toContain("Senha");
+  });
+
+  it("traduz erros de credencial e de limite de e-mail", () => {
+    const model = loadModel();
+
+    expect(model.formatAuthError).toBeTypeOf("function");
+    expect(model.formatAuthError?.({ message: "Invalid login credentials" }, "fallback")).toBe(
+      "E-mail ou senha inválidos.",
+    );
+    expect(model.formatAuthError?.({ message: "email rate limit exceeded" }, "fallback")).toContain(
+      "limite de envio",
+    );
   });
 
   it("formata valores monetários no padrão brasileiro", () => {

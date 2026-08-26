@@ -31,15 +31,18 @@
         <div class="login-panel__content">
           <span class="eyebrow">Acesso restrito</span>
           <h1 id="login-title">Acesse o Painel de Resultados</h1>
-          <p>Use seu e-mail corporativo. Enviaremos um link de acesso de uso único sem criar contas públicas.</p>
+          <p>Entre com seu e-mail e senha do Supabase Auth. Se preferir, solicite um link de uso único.</p>
           <form id="login-form" novalidate>
             <label for="login-email">E-mail corporativo</label>
             <input id="login-email" type="email" autocomplete="username" placeholder="nome@gentedigital.com.br" />
+            <label for="login-password">Senha</label>
+            <input id="login-password" type="password" autocomplete="current-password" placeholder="Sua senha do Supabase Auth" />
             <p class="form-error" data-login-error role="alert" hidden></p>
             <p class="auth-status" data-login-status role="status" hidden></p>
-            <button class="button button--primary button--wide" data-login-submit type="submit">Enviar link</button>
+            <button class="button button--primary button--wide" data-login-submit type="submit">Entrar com senha</button>
+            <button class="button button--outline button--wide" data-login-link type="button">Enviar link por e-mail</button>
           </form>
-          <p class="login-footnote">Acesso por link de uso único · dados agregados protegidos por Supabase Auth</p>
+          <p class="login-footnote">Senha validada pelo Supabase Auth · link de uso único como alternativa · dados agregados protegidos</p>
         </div>
       </div>
     </section>

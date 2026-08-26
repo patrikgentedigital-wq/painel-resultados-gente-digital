@@ -72,13 +72,14 @@ próxima sincronização pode alterá-los.
 1. Criar o usuário do CEO no Supabase Auth com o e-mail corporativo correto.
 2. Manter `requireAuth: true` em `app-config.js`.
 3. Abrir o painel e informar o e-mail.
-4. Solicitar o link de acesso.
-5. Abrir o e-mail “Your sign-in link” e clicar em `Sign in`.
+4. Entrar com o e-mail e a senha configurados no Supabase Auth; ou solicitar o link de acesso.
+5. Se usar o link, abrir o e-mail “Your sign-in link” e clicar em `Sign in`.
 6. Confirmar que a tela carrega o snapshot e a data da última sincronização.
 
 `create_user=false` é usado no pedido do link. Isso impede que qualquer e-mail
-crie uma conta automaticamente. O Supabase envia o template padrão de link de
-uso único; o painel não depende de senha nem de código numérico.
+crie uma conta automaticamente. A senha, quando usada, é validada diretamente
+no Supabase Auth; o navegador não a grava nem a envia para o n8n. O link de uso
+único permanece como alternativa.
 
 ## Rollback
 

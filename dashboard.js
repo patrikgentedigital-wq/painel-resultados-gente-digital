@@ -216,6 +216,16 @@
     }
   }
 
+  function formatAuthError(error, fallback) {
+    const message = String(error?.message || error || "").toLowerCase();
+    if (message.includes("invalid login credentials")) return "E-mail ou senha inválidos.";
+    if (message.includes("email rate limit exceeded")) {
+      return "O limite de envio de links foi atingido. Use o último e-mail recebido ou aguarde a liberação automática.";
+    }
+    if (message.includes("user not found")) return "E-mail não autorizado para este painel.";
+    return fallback;
+  }
+
   async function requestAuth(window, endpoint, body, accessToken) {
     const config = getSupabaseConfig(window);
     if (!config || typeof window?.fetch !== "function") throw new Error("Supabase Auth não configurado.");
@@ -696,9 +706,12 @@
     const loginView = document.querySelector("#login-view");
     const appShell = document.querySelector("#dashboard-shell");
     const loginForm = document.querySelector("#login-form");
+    const loginEmail = document.querySelector("#login-email");
+    const loginPassword = document.querySelector("#login-password");
     const loginError = document.querySelector("[data-login-error]");
     const loginStatus = document.querySelector("[data-login-status]");
     const loginSubmit = document.querySelector("[data-login-submit]");
+    const loginLink = document.querySelector("[data-login-link]");
 
     function setLoginError(message) {
       if (!loginError) return;
@@ -716,7 +729,8 @@
       document.body.dataset.authState = "signed-out";
       if (loginView) loginView.hidden = false;
       if (appShell) appShell.hidden = true;
-      if (loginSubmit) loginSubmit.textContent = "Enviar link";
+      if (loginSubmit) loginSubmit.textContent = "Entrar com senha";
+      if (loginPassword) loginPassword.value = "";
       setLoginError("");
       setLoginStatus("");
     }
@@ -757,28 +771,68 @@
       document.querySelector("#login-email")?.focus();
     });
 
+    function setLoginActionsBusy(busy) {
+      if (loginSubmit) loginSubmit.disabled = busy;
+      if (loginLink) loginLink.disabled = busy;
+    }
+
+    async function sendLoginLink() {
+      const email = loginEmail?.value?.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setLoginError("Informe um e-mail corporativo válido.");
+        loginEmail?.focus();
+        return;
+      }
+
+      setLoginError("");
+      setLoginActionsBusy(true);
+      try {
+        await requestAuth(window, "otp", {
+          email,
+          create_user: false,
+        });
+        setLoginStatus("Link enviado. Abra o e-mail corporativo e clique em “Sign in”. O link expira e só pode ser usado uma vez.");
+      } catch (error) {
+        setLoginError(formatAuthError(error, "Não foi possível enviar o link. Tente novamente."));
+      } finally {
+        setLoginActionsBusy(false);
+      }
+    }
+
+    loginLink?.addEventListener("click", () => {
+      void sendLoginLink();
+    });
+
     loginForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const email = document.querySelector("#login-email")?.value?.trim();
+      const email = loginEmail?.value?.trim();
+      const password = loginPassword?.value || "";
 
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         setLoginError("Informe um e-mail corporativo válido.");
         return;
       }
+      if (!password) {
+        setLoginError("Informe a senha do Supabase Auth.");
+        loginPassword?.focus();
+        return;
+      }
 
       setLoginError("");
       try {
-        if (loginSubmit) loginSubmit.disabled = true;
-        await requestAuth(window, "otp", {
+        setLoginActionsBusy(true);
+        const session = await requestAuth(window, "token?grant_type=password", {
           email,
-          create_user: false,
+          password,
         });
-        if (loginSubmit) loginSubmit.textContent = "Reenviar link";
-        setLoginStatus("Link enviado. Abra o e-mail corporativo e clique em “Sign in”. O link expira e só pode ser usado uma vez.");
+        if (!session?.access_token) throw new Error("A sessão não foi retornada pelo Supabase.");
+        storeSession(window, session);
+        setLoginStatus("");
+        showAuthenticatedApp();
       } catch (error) {
-        setLoginError(`Não foi possível enviar o link: ${error?.message || "tente novamente"}`);
+        setLoginError(formatAuthError(error, "Não foi possível entrar. Tente novamente."));
       } finally {
-        if (loginSubmit) loginSubmit.disabled = false;
+        setLoginActionsBusy(false);
       }
     });
 
@@ -807,6 +861,7 @@
     fetchLatestSnapshot,
     filterAlerts,
     formatCurrency,
+    formatAuthError,
     getComparisonNotice,
     initDashboard,
   };

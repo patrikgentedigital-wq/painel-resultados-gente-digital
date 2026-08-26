@@ -38,8 +38,8 @@ consulta somente `dashboard_latest` depois que a persistência é confirmada.
 - Navegação responsiva para desktop, tablet e celular.
 - Estados explícitos de dado completo, parcial, indisponível ou com erro;
   consulta sem registros não é transformada em um zero financeiro positivo.
-- Login passwordless por link de uso único enviado ao e-mail; a criação
-  automática de usuários está desabilitada.
+- Login por e-mail e senha no Supabase Auth, com link de uso único como
+  alternativa; a criação automática de usuários está desabilitada.
 - Leitura somente da view agregada `dashboard_latest` para sessões autenticadas;
   o navegador não recebe a service role, não grava tabelas e não recebe payload
   bruto do IXC.
@@ -86,8 +86,8 @@ O deploy de produção foi verificado com HTTP 200 e corresponde ao commit
 
 - Não há cálculo de lucro: o IXC atual não fornece uma fonte de custos
   confiável para esse indicador.
-- A conta do CEO precisa existir no Supabase Auth para o link funcionar; sem o
-  e-mail real do usuário não é possível validar a entrega.
+- A conta do CEO precisa existir no Supabase Auth para a senha ou o link
+  funcionarem; sem o e-mail real do usuário não é possível validar a entrega.
 - Opa Suite, WhatsApp e ferramentas de monitoramento ainda não estão
   integrados; o painel representa esses módulos como não configurados.
 - A consulta de clientes foi mantida fora do primeiro fluxo executivo porque
