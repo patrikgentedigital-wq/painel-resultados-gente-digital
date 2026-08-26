@@ -72,12 +72,13 @@ próxima sincronização pode alterá-los.
 1. Criar o usuário do CEO no Supabase Auth com o e-mail corporativo correto.
 2. Manter `requireAuth: true` em `app-config.js`.
 3. Abrir o painel e informar o e-mail.
-4. Solicitar o código OTP.
-5. Informar o código recebido.
+4. Solicitar o link de acesso.
+5. Abrir o e-mail “Your sign-in link” e clicar em `Sign in`.
 6. Confirmar que a tela carrega o snapshot e a data da última sincronização.
 
-`create_user=false` é usado no pedido de OTP. Isso impede que qualquer e-mail
-crie uma conta automaticamente.
+`create_user=false` é usado no pedido do link. Isso impede que qualquer e-mail
+crie uma conta automaticamente. O Supabase envia o template padrão de link de
+uso único; o painel não depende de senha nem de código numérico.
 
 ## Rollback
 
@@ -98,7 +99,7 @@ para uma visão executiva.
 
 ## Pendências externas
 
-- e-mail da conta real do CEO para testar OTP;
+- validação do link de acesso no e-mail real do CEO;
 - domínio personalizado, caso a empresa queira substituir o endereço Vercel;
 - validação dos indicadores com a área financeira e operacional;
 - eventual integração futura com Opa Suite, WhatsApp ou monitoramento;

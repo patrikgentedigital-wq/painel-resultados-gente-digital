@@ -698,11 +698,7 @@
     const loginForm = document.querySelector("#login-form");
     const loginError = document.querySelector("[data-login-error]");
     const loginStatus = document.querySelector("[data-login-status]");
-    const loginCodeGroup = document.querySelector("#login-code-group");
-    const loginCode = document.querySelector("#login-code");
     const loginSubmit = document.querySelector("[data-login-submit]");
-    let loginStep = "email";
-    let pendingEmail = "";
 
     function setLoginError(message) {
       if (!loginError) return;
@@ -720,11 +716,7 @@
       document.body.dataset.authState = "signed-out";
       if (loginView) loginView.hidden = false;
       if (appShell) appShell.hidden = true;
-      loginStep = "email";
-      pendingEmail = "";
-      if (loginCodeGroup) loginCodeGroup.hidden = true;
-      if (loginCode) loginCode.value = "";
-      if (loginSubmit) loginSubmit.textContent = "Enviar código";
+      if (loginSubmit) loginSubmit.textContent = "Enviar link";
       setLoginError("");
       setLoginStatus("");
     }
@@ -768,7 +760,6 @@
     loginForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
       const email = document.querySelector("#login-email")?.value?.trim();
-      const code = loginCode?.value?.trim();
 
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         setLoginError("Informe um e-mail corporativo válido.");
@@ -776,45 +767,16 @@
       }
 
       setLoginError("");
-      if (loginStep === "email") {
-        try {
-          if (loginSubmit) loginSubmit.disabled = true;
-          await requestAuth(window, "otp", {
-            email,
-            create_user: false,
-          });
-          pendingEmail = email;
-          loginStep = "code";
-          if (loginCodeGroup) loginCodeGroup.hidden = false;
-          if (loginSubmit) loginSubmit.textContent = "Confirmar código";
-          setLoginStatus("Código enviado. Confira o e-mail corporativo e informe os seis dígitos.");
-          loginCode?.focus();
-        } catch (error) {
-          setLoginError(`Não foi possível enviar o código: ${error?.message || "tente novamente"}`);
-        } finally {
-          if (loginSubmit) loginSubmit.disabled = false;
-        }
-        return;
-      }
-
-      if (!code || code.length < 6) {
-        setLoginError("Informe o código recebido por e-mail.");
-        return;
-      }
-
       try {
         if (loginSubmit) loginSubmit.disabled = true;
-        const session = await requestAuth(window, "verify", {
-          type: "email",
-          email: pendingEmail || email,
-          token: code,
+        await requestAuth(window, "otp", {
+          email,
+          create_user: false,
         });
-        if (!session?.access_token) throw new Error("A sessão não foi retornada pelo Supabase.");
-        storeSession(window, session);
-        setLoginStatus("");
-        showAuthenticatedApp();
+        if (loginSubmit) loginSubmit.textContent = "Reenviar link";
+        setLoginStatus("Link enviado. Abra o e-mail corporativo e clique em “Sign in”. O link expira e só pode ser usado uma vez.");
       } catch (error) {
-        setLoginError(`Código inválido ou expirado: ${error?.message || "tente novamente"}`);
+        setLoginError(`Não foi possível enviar o link: ${error?.message || "tente novamente"}`);
       } finally {
         if (loginSubmit) loginSubmit.disabled = false;
       }

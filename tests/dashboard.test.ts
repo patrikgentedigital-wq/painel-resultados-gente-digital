@@ -54,6 +54,15 @@ describe("contrato do Painel de Resultados", () => {
     expect(logo?.getAttribute("alt")).toBe("Gente Digital");
   });
 
+  it("orienta o acesso pelo link de uso único enviado pelo Supabase", () => {
+    const { dom } = loadPrototype();
+    const document = dom.window.document;
+
+    expect(document.querySelector("[data-login-submit]")?.textContent).toContain("Enviar link");
+    expect(document.querySelector(".login-footnote")?.textContent).toContain("link de uso único");
+    expect(document.querySelector("#login-code-group")).toBeNull();
+  });
+
   it("formata valores monetários no padrão brasileiro", () => {
     const model = loadModel();
     expect(model.formatCurrency).toBeTypeOf("function");
