@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#101315" />
     <meta
       name="description"
-      content="Protótipo demonstrativo do Painel de Resultados da Gente Digital."
+      content="Painel de Resultados da Gente Digital — crescimento, recebimentos e operação."
     />
-    <title>Visão Geral · Painel de Resultados</title>
+    <title>Painel de Resultados · Gente Digital</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -57,7 +57,7 @@
             aria-label="Recolher navegação"
             aria-expanded="true"
           >
-            <span aria-hidden="true">‹</span>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 5 7.5 10l5 5"/></svg>
           </button>
           <img
             class="company-logo"
@@ -72,67 +72,67 @@
         </div>
 
         <nav class="sidebar-nav">
-          <p class="nav-label">Acompanhar</p>
+          <p class="nav-label">Gestão</p>
           <button class="nav-item" type="button" data-page-target="visao-geral" aria-current="page">
-            <span class="nav-glyph" aria-hidden="true">⌂</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 10 3.5l7 7"/><path d="M5.5 9v7.5h9V9"/></svg>
             <span class="nav-copy">Visão Geral</span>
           </button>
           <button class="nav-item" type="button" data-page-target="movimentos">
-            <span class="nav-glyph" aria-hidden="true">↕</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5v13M7 3.5 4 6.5M7 3.5l3 3M13 16.5v-13M13 16.5l-3-3M13 16.5l3-3"/></svg>
             <span class="nav-copy">Ativações e Cancelamentos</span>
           </button>
           <button class="nav-item" type="button" data-page-target="financeiro">
-            <span class="nav-glyph nav-glyph--text" aria-hidden="true">R$</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5h13v10h-13z"/><path d="M3.5 6.5 10 11l6.5-4.5M7 13.5h4"/></svg>
             <span class="nav-copy">Financeiro</span>
           </button>
           <button class="nav-item" type="button" data-page-target="retencao">
-            <span class="nav-glyph" aria-hidden="true">◎</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="2.5"/></svg>
             <span class="nav-copy">Retenção</span>
           </button>
           <button class="nav-item" type="button" data-page-target="planos">
-            <span class="nav-glyph" aria-hidden="true">⇄</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h12M4 7l3-3M4 7l3 3M16 13H4M16 13l-3-3M16 13l-3 3"/></svg>
             <span class="nav-copy">Planos</span>
           </button>
 
-          <p class="nav-label">Operar</p>
+          <p class="nav-label">Operação</p>
           <button class="nav-item" type="button" data-page-target="qualidade">
-            <span class="nav-glyph" aria-hidden="true">⌁</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5a9 9 0 0 1 14 0M5.8 15.3a5.5 5.5 0 0 1 8.4 0"/><circle cx="10" cy="17.2" r="1.1" fill="currentColor" stroke="none"/></svg>
             <span class="nav-copy">Qualidade da Conexão</span>
           </button>
           <button class="nav-item" type="button" data-page-target="dados">
-            <span class="nav-glyph" aria-hidden="true">◇</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="10" cy="5.5" rx="6" ry="2.5"/><path d="M4 5.5v9c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-9M4 10c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5"/></svg>
             <span class="nav-copy">Qualidade dos Dados</span>
           </button>
           <button class="nav-item" type="button" data-page-target="alertas">
-            <span class="nav-glyph" aria-hidden="true">!</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5 3.8 14.5h12.4z"/><path d="M10 8v3.2M10 13.2v.1"/></svg>
             <span class="nav-copy">Alertas</span>
-            <span class="nav-count" aria-label="3 alertas críticos">3</span>
+            <span class="nav-count" data-live-alert-count hidden></span>
           </button>
           <button class="nav-item" type="button" data-page-target="integracoes">
-            <span class="nav-glyph" aria-hidden="true">⌘</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1.2"/><rect x="11" y="11" width="5.5" height="5.5" rx="1.2"/><path d="M9 6.2h4.8v4.8M14.8 9V6.2H12"/></svg>
             <span class="nav-copy">Integrações</span>
           </button>
           <button class="nav-item" type="button" data-page-target="administracao">
-            <span class="nav-glyph" aria-hidden="true">⚙</span>
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="2.6"/><path d="M10 3.5v2.4M10 14.1v2.4M3.5 10h2.4M14.1 10h2.4M5.4 5.4l1.7 1.7M12.9 12.9l1.7 1.7M14.6 5.4l-1.7 1.7M7.1 12.9l-1.7 1.7"/></svg>
             <span class="nav-copy">Administração</span>
           </button>
         </nav>
 
         <div class="sidebar-foot">
           <div class="sync-mini">
-            <span class="status-light status-light--good" aria-hidden="true"></span>
+            <span class="status-light status-light--warning" aria-hidden="true"></span>
             <div>
-              <strong>Dados atualizados</strong>
-              <span>há 8 minutos</span>
+              <strong data-live-sync-mini-status>Aguardando snapshot</strong>
+              <span data-live-sync-mini-age>—</span>
             </div>
           </div>
           <button class="user-card" type="button" data-logout>
-            <span class="user-avatar">PS</span>
+            <span class="user-avatar" data-live-user-initials aria-hidden="true">GD</span>
             <span class="user-copy">
-              <strong>Patrick Silva</strong>
-              <small>Administrador</small>
+              <strong data-live-user-email>Sessão protegida</strong>
+              <small>Sair do painel</small>
             </span>
-            <span aria-hidden="true">···</span>
+            <svg class="logout-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4.5H5.5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1H8M13 6.5l3.5 3.5L13 13.5M16 10H8"/></svg>
           </button>
         </div>
       </aside>
@@ -162,12 +162,8 @@
                 <option value="2025-completo">2025 completo</option>
               </select>
             </label>
-            <button class="icon-button" type="button" aria-label="Notificações">
-              <span aria-hidden="true">!</span>
-              <span class="notification-dot"></span>
-            </button>
             <button class="button button--dark" type="button" data-open-export>
-              <span aria-hidden="true">↓</span>
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5v10M10 13.5 6.5 10M10 13.5 13.5 10M4.5 15.5h11"/></svg>
               Exportar
             </button>
           </div>
@@ -177,15 +173,14 @@
           <section class="page" data-page="visao-geral" aria-labelledby="overview-title">
             <div class="page-intro">
               <div>
-                <span class="eyebrow">Pulso operacional</span>
-                <h1 id="overview-title">O que mudou na base hoje?</h1>
+                <h1 id="overview-title">Visão geral</h1>
                 <p>
-                  Comercial, financeiro e operação em uma leitura única de
+                  Base, caixa e operação em
                   <strong data-period-label>2026 até julho</strong>.
                 </p>
               </div>
               <div class="freshness-stamp">
-                <span class="status-light status-light--good" aria-hidden="true"></span>
+                <span class="status-light status-light--warning" aria-hidden="true"></span>
                 <div>
                   <strong>Última sincronização</strong>
                   <span><span data-live-updated>Última sincronização pendente</span> · <span data-period-freshness>Dados demonstrativos</span></span>
@@ -193,66 +188,37 @@
               </div>
             </div>
 
+            <div class="notice notice--warning" data-live-source-notice role="status">Aguardando snapshot do IXC para confirmar a cobertura da base.</div>
             <div class="notice notice--warning" data-comparison-notice role="status" hidden></div>
 
             <section class="pulse-panel" aria-labelledby="pulse-title">
               <div class="pulse-heading">
-              <div>
-                <span class="eyebrow eyebrow--on-dark">Linha de Pulso da Base</span>
-                <h2 id="pulse-title">Crescimento, caixa e capacidade de resposta</h2>
+                <h2 id="pulse-title">Estado da operação</h2>
+                <span class="live-badge" data-live-badge>Aguardando snapshot</span>
               </div>
-                <span class="demo-chip" data-live-badge>AGUARDANDO SNAPSHOT</span>
-              </div>
-              <div class="pulse-track" aria-label="Resumo operacional conectado">
-                <button
-                  class="pulse-node pulse-node--positive"
-                  type="button"
-                  data-open-drawer
-                  data-drawer-title="Crescimento da base"
-                  data-drawer-copy="O crescimento líquido é calculado a partir das ativações e cancelamentos normalizados do IXC no período."
-                >
-                  <span class="pulse-index">01</span>
-                  <span class="pulse-label">Crescimento</span>
+              <div class="pulse-track" aria-label="Resumo operacional">
+                <div class="pulse-node">
+                  <span class="pulse-label">Crescimento líquido</span>
                   <strong data-live-net-additions>—</strong>
                   <small data-live-movement-copy>Aguardando leitura do IXC.</small>
-                </button>
-                <button
-                  class="pulse-node pulse-node--positive"
-                  type="button"
-                  data-open-drawer
-                  data-drawer-title="Saldo financeiro"
-                  data-drawer-copy="Recebimentos, previsão, saldo em aberto e cobrança efetiva só aparecem quando o IXC retorna a base financeira válida."
-                >
-                  <span class="pulse-index">02</span>
-                  <span class="pulse-label">Financeiro</span>
+                </div>
+                <div class="pulse-node">
+                  <span class="pulse-label">Total recebido</span>
                   <strong data-live-received>—</strong>
                   <small data-live-finance-copy>Aguardando base financeira.</small>
-                </button>
-                <button
-                  class="pulse-node pulse-node--warning"
-                  type="button"
-                  data-open-drawer
-                  data-drawer-title="Pressão operacional"
-                  data-drawer-copy="O backlog soma O.S. e atendimentos abertos. A prioridade cresce quando há registros vencidos."
-                >
-                  <span class="pulse-index">03</span>
-                  <span class="pulse-label">Risco</span>
+                </div>
+                <div class="pulse-node">
+                  <span class="pulse-label">Backlog vencido</span>
                   <strong data-live-overdue-operations>—</strong>
                   <small data-live-operational-state>Dados indisponíveis</small>
-                </button>
-                <button
-                  class="pulse-node"
-                  type="button"
-                  data-open-drawer
-                  data-drawer-title="Atualização dos dados"
-                  data-drawer-copy="A atualização vem do workflow do n8n, que consulta o IXC e grava apenas agregados e eventos sanitizados no Supabase."
-                >
-                  <span class="pulse-index">04</span>
-                  <span class="pulse-label">Dados</span>
+                </div>
+                <div class="pulse-node">
+                  <span class="pulse-label">Atualização</span>
                   <strong data-live-sync-age>—</strong>
                   <small>IXC → n8n → Supabase</small>
-                </button>
+                </div>
               </div>
+              <button class="panel-action panel-action--ghost" type="button" data-open-drawer data-drawer-title="Como este resumo é calculado" data-drawer-copy="Crescimento líquido, recebimentos e backlog são calculados a partir do snapshot sincronizado do IXC. Sem snapshot válido, os valores permanecem indisponíveis em vez de exibir zero.">Como este resumo é calculado <span aria-hidden="true">→</span></button>
             </section>
 
             <div class="kpi-grid" aria-label="Indicadores principais">
@@ -267,7 +233,7 @@
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Ativações</span>
-                  <span class="trend trend--up">↑ 18%</span>
+                  <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-activations>—</strong>
                 <p data-live-activation-copy>Aguardando snapshot.</p>
@@ -275,7 +241,7 @@
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Cancelamentos</span>
-                  <span class="trend trend--down">↓ 42%</span>
+                  <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-cancellations>—</strong>
                 <p data-live-cancellation-copy>Aguardando snapshot.</p>
@@ -299,7 +265,7 @@
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Inadimplência</span>
-                  <span class="trend trend--up">↓ 1 p.p.</span>
+                  <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-delinquency>—</strong>
                 <p data-live-outstanding-copy>Sem base financeira confiável.</p>
@@ -307,7 +273,7 @@
               <article class="kpi-card">
                 <div class="kpi-topline">
                   <span>Saldo comercial</span>
-                  <span class="trend trend--up">Positivo</span>
+                  <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-churn>—</strong>
                 <p>Cancelamentos sobre a base ativa.</p>
@@ -315,7 +281,7 @@
               <article class="kpi-card kpi-card--risk">
                 <div class="kpi-topline">
                   <span>Saldo de planos</span>
-                  <span class="trend trend--risk">Atenção</span>
+                  <span class="source-tag">IXC</span>
                 </div>
                 <strong class="kpi-currency" data-live-plan-delta>—</strong>
                 <p data-live-plan-copy>Aguardando alterações de plano.</p>
@@ -342,7 +308,7 @@
                   <span class="trend trend--risk">Ação</span>
                 </div>
                 <strong data-live-overdue-operations>—</strong>
-                <p>O.S. e atendimentos fora da janela.</p>
+                <p data-live-overdue-operations-copy>Prazo operacional ainda não calculado.</p>
               </article>
             </div>
 
@@ -351,7 +317,7 @@
                 <div class="panel-heading">
                   <div>
                     <span class="panel-kicker">Movimento mensal</span>
-                    <h2 id="movement-chart-title">Ativações superam cancelamentos</h2>
+                    <h2 id="movement-chart-title">Ativações e cancelamentos por mês</h2>
                   </div>
                   <div class="legend" aria-label="Legenda do gráfico">
                     <span><i class="legend-dot legend-dot--yellow"></i> Ativações</span>
@@ -379,43 +345,8 @@
                   </div>
                   <button class="text-button" type="button" data-page-target="alertas">Ver todas</button>
                 </div>
-                <div class="priority-list">
-                  <button
-                    class="priority-item"
-                    type="button"
-                    data-open-drawer
-                    data-drawer-title="Downgrades acima de upgrades"
-                    data-drawer-copy="Foram registrados 79 downgrades contra 32 upgrades no período demonstrativo, com saldo negativo de R$ 1.521,95."
-                  >
-                    <span class="severity severity--critical">Crítico</span>
-                    <strong>Downgrades acima de upgrades</strong>
-                    <small>Saldo de -R$ 1.521,95 · Comercial</small>
-                    <span class="priority-arrow" aria-hidden="true">→</span>
-                  </button>
-                  <button
-                    class="priority-item"
-                    type="button"
-                    data-open-drawer
-                    data-drawer-title="Mudança sem cobertura"
-                    data-drawer-copy="O motivo aparece entre as principais causas de cancelamento. A análise por cidade e bairro depende da sincronização do IXC."
-                  >
-                    <span class="severity severity--warning">Atenção</span>
-                    <strong>Mudança sem cobertura</strong>
-                    <small>Motivo recorrente · Expansão</small>
-                    <span class="priority-arrow" aria-hidden="true">→</span>
-                  </button>
-                  <button
-                    class="priority-item"
-                    type="button"
-                    data-open-drawer
-                    data-drawer-title="Sincronização saudável"
-                    data-drawer-copy="Estado demonstrativo. A evidência real será calculada a partir das execuções do n8n e das gravações no Supabase."
-                  >
-                    <span class="severity severity--stable">Estável</span>
-                    <strong>Carga dentro da janela</strong>
-                    <small>Última execução há 8 minutos</small>
-                    <span class="priority-arrow" aria-hidden="true">→</span>
-                  </button>
+                <div class="priority-list" data-live-priority-list>
+                  <div class="data-empty-inline"><strong>Prioridades aguardando dados</strong><span>A classificação será preenchida pelo snapshot do IXC.</span></div>
                 </div>
               </article>
 
@@ -424,13 +355,10 @@
                   <div><span class="panel-kicker">Retenção</span><h2 id="reasons-title">Motivos de cancelamento</h2></div>
                   <span class="source-tag">IXC</span>
                 </div>
-                <div class="rank-bars">
-                  <div class="rank-row"><span><b>01</b> Inadimplência</span><div class="rank-track"><i style="--value: 82%"></i></div><strong>Principal</strong></div>
-                  <div class="rank-row"><span><b>02</b> Mudança sem cobertura</span><div class="rank-track"><i style="--value: 64%"></i></div><strong>Alto</strong></div>
-                  <div class="rank-row"><span><b>03</b> Insatisfação com conexão</span><div class="rank-track"><i style="--value: 48%"></i></div><strong>Médio</strong></div>
-                  <div class="rank-row"><span><b>04</b> Concorrência</span><div class="rank-track"><i style="--value: 31%"></i></div><strong>Baixo</strong></div>
+                <div class="rank-bars" data-live-cancellation-reasons>
+                  <div class="data-empty-inline"><strong>Motivos aguardando dados</strong><span>O ranking será preenchido somente com motivos vindos do IXC.</span></div>
                 </div>
-                <p class="chart-note">Ordem baseada na apresentação; percentuais são ilustrativos até a leitura detalhada do IXC.</p>
+                <p class="chart-note">Nenhum motivo é exibido sem evidência no snapshot sincronizado.</p>
               </article>
 
               <article class="panel" aria-labelledby="receipts-title">
@@ -468,20 +396,21 @@
               <button class="button button--outline" type="button" data-open-export>Baixar análise</button>
             </div>
             <div class="filter-strip" aria-label="Filtros comerciais">
-              <label><span>Filial</span><select><option>Todas as filiais</option><option>Bragança</option></select></label>
-              <label><span>Cidade</span><select><option>Todas as cidades</option><option>Bragança</option><option>Augusto Corrêa</option></select></label>
-              <label><span>Plano</span><select><option>Todos os planos</option><option>400 Mega</option><option>600 Mega</option></select></label>
-              <label><span>Motivo</span><select><option>Todos os motivos</option><option>Inadimplência</option><option>Mudança sem cobertura</option></select></label>
-              <button class="filter-clear" type="button" data-toast-message="Filtros comerciais limpos.">Limpar</button>
+              <label><span>Plano dos cancelamentos</span><select data-live-plan-filter disabled title="Filtra a tabela de cancelamentos por mês abaixo."><option value="">Catálogo indisponível</option></select></label>
             </div>
             <div class="metric-ribbon">
-              <div><span>Ativações</span><strong>994</strong><small>+18% vs. período equivalente</small></div>
-              <div><span>Cancelamentos</span><strong>395</strong><small>-42% vs. período equivalente</small></div>
-              <div class="metric-ribbon__highlight"><span>Crescimento líquido</span><strong>+599</strong><small>melhor direção da série</small></div>
-              <div><span>Ticket ativado</span><strong>R$ 113,73</strong><small>média por nova ativação</small></div>
+              <div><span>Ativações</span><strong data-live-activations>—</strong><small>na competência selecionada</small></div>
+              <div><span>Cancelamentos</span><strong data-live-cancellations>—</strong><small>na competência selecionada</small></div>
+              <div class="metric-ribbon__highlight"><span>Crescimento líquido</span><strong data-live-net-additions>—</strong><small>ativações menos cancelamentos</small></div>
+              <div><span data-live-arpu-label>Recebido por contrato</span><strong data-live-arpu>—</strong><small data-live-arpu-copy>Aguardando competência</small></div>
             </div>
+            <article class="panel">
+              <div class="panel-heading"><div><span class="panel-kicker">Relatório de contratos do IXC</span><h2>Cancelamentos por mês e plano</h2></div></div>
+              <p class="chart-note">Contratos inativos pela data de cancelamento, em todas as filiais autorizadas. O mês atual acumula até a data da sincronização. Desistências são um status separado.</p>
+              <div class="table-scroll" data-live-cancellation-history>Aguardando cancelamentos do IXC.</div>
+            </article>
             <div class="content-split">
-              <article class="panel panel--wide">
+              <article class="panel panel--wide" data-demo-only hidden>
                 <div class="panel-heading"><div><span class="panel-kicker">Coorte</span><h2>Cancelamento precoce</h2></div><span class="demo-chip demo-chip--light">SIMULAÇÃO</span></div>
                 <div class="cohort-grid">
                   <div><span>Até 30 dias</span><strong>18</strong><i style="--cohort: 28%"></i></div>
@@ -491,13 +420,13 @@
                 </div>
                 <p class="chart-note">A coorte será calculada pela diferença entre ativação e cancelamento após a carga histórica.</p>
               </article>
-              <article class="panel">
+              <article class="panel" data-demo-only hidden>
                 <div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Concentração</span><h2>Onde olhar primeiro</h2></div></div>
                 <ol class="focus-list"><li><span>Bragança · Centro</span><strong>82 eventos</strong></li><li><span>Bragança · Vila Sinhá</span><strong>61 eventos</strong></li><li><span>Augusto Corrêa</span><strong>39 eventos</strong></li></ol>
                 <p class="chart-note">Localidades demonstrativas até a sincronização das dimensões do IXC.</p>
               </article>
             </div>
-            <article class="panel table-panel">
+            <article class="panel table-panel" data-demo-only hidden>
               <div class="panel-heading"><div><span class="panel-kicker">Registros</span><h2>Movimentos recentes</h2></div><span class="table-count">395 cancelamentos</span></div>
               <div class="table-scroll"><table><thead><tr><th>Cliente</th><th>Contrato</th><th>Cidade</th><th>Plano</th><th>Evento</th><th>Motivo</th><th>Valor</th><th></th></tr></thead><tbody>
                 <tr><td>Cliente 10482</td><td class="mono">CTR-19482</td><td>Bragança</td><td>600 Mega</td><td><span class="status-badge status-badge--negative">Cancelamento</span></td><td>Mudança sem cobertura</td><td>R$ 126,64</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Contrato CTR-19482" data-drawer-copy="Cliente anonimizado. A linha do tempo real será carregada do histórico consolidado.">Ver detalhes</button></td></tr>
@@ -508,23 +437,23 @@
           </section>
 
           <section class="page" data-page="financeiro" aria-labelledby="finance-title" hidden>
-            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Recebimentos</span><h1 id="finance-title">Financeiro</h1><p>Da previsão ao recebimento, com foco no que exige ação.</p></div><button class="button button--outline" type="button" data-open-export>Exportar títulos</button></div>
+            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Recebimentos</span><h1 id="finance-title">Financeiro</h1><p>Da previsão ao recebimento, com foco no que exige ação.</p></div><div class="page-intro__actions"><span class="status-badge" data-live-finance-detail-state>Aguardando base financeira</span><button class="button button--outline" type="button" data-open-export>Exportar títulos</button></div></div>
             <div class="metric-ribbon">
-              <div><span>Total previsto</span><strong>R$ 4,06 mi</strong><small>2026 até julho</small></div>
-              <div><span>Recebido</span><strong>R$ 3,99 mi</strong><small>98% do previsto</small></div>
-              <div><span>Não recebido</span><strong>R$ 69,9 mil</strong><small>2% do previsto</small></div>
-              <div class="metric-ribbon__highlight"><span>Inadimplência</span><strong>2%</strong><small>-1 p.p. vs. 2025</small></div>
+              <div><span>Total previsto</span><strong data-live-due-summary>—</strong><small data-period-label>Competência selecionada</small></div>
+              <div><span>Recebido</span><strong data-live-received-summary>—</strong><small data-live-collection-summary>— do previsto</small></div>
+              <div><span>Não recebido</span><strong data-live-outstanding-summary>—</strong><small data-live-delinquency-summary>— do previsto</small></div>
+              <div class="metric-ribbon__highlight"><span>Inadimplência</span><strong data-live-delinquency>—</strong><small data-live-delinquency-summary>— do previsto</small></div>
             </div>
             <div class="dashboard-grid">
-              <article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Pontualidade</span><h2>Quando os clientes pagam</h2></div><span class="demo-chip demo-chip--light">FAIXAS CONFIGURÁVEIS</span></div>
+              <article class="panel panel--wide" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Pontualidade</span><h2>Quando os clientes pagam</h2></div><span class="demo-chip demo-chip--light">FAIXAS CONFIGURÁVEIS</span></div>
                 <div class="aging-chart" role="img" aria-label="Distribuição demonstrativa dos recebimentos por faixa de pagamento"><div style="--aging: 41%"><span>Adiantado</span><i></i><strong>41%</strong></div><div style="--aging: 21%"><span>No vencimento</span><i></i><strong>21%</strong></div><div style="--aging: 29%"><span>1–5 dias</span><i></i><strong>29%</strong></div><div style="--aging: 7%"><span>6–15 dias</span><i></i><strong>7%</strong></div><div style="--aging: 2%"><span>16+ dias</span><i></i><strong>2%</strong></div></div>
               </article>
-              <article class="panel"><div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Cobrança</span><h2>Próximas ações</h2></div></div>
+              <article class="panel" data-demo-only hidden><div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Cobrança</span><h2>Próximas ações</h2></div></div>
                 <div class="action-queue"><div><span class="queue-number">18</span><div><strong>Aguardando análise</strong><small>R$ 8.942,70</small></div></div><div><span class="queue-number queue-number--warning">7</span><div><strong>Aprovação pendente</strong><small>mensagem ainda não enviada</small></div></div><div><span class="queue-number queue-number--good">31</span><div><strong>Valores recuperados</strong><small>neste período</small></div></div></div>
                 <button class="panel-action" type="button" data-toast-message="Fila financeira aberta em modo demonstrativo.">Abrir fila de cobrança <span aria-hidden="true">→</span></button>
               </article>
             </div>
-            <article class="panel table-panel"><div class="panel-heading"><div><span class="panel-kicker">Títulos</span><h2>Maior impacto financeiro</h2></div><label class="search-field"><span class="sr-only">Buscar título</span><input type="search" placeholder="Buscar contrato ou título" /></label></div>
+            <article class="panel table-panel" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Títulos</span><h2>Maior impacto financeiro</h2></div><label class="search-field"><span class="sr-only">Buscar título</span><input type="search" placeholder="Buscar contrato ou título" /></label></div>
               <div class="table-scroll"><table><thead><tr><th>Cliente</th><th>Contrato</th><th>Vencimento</th><th>Atraso</th><th>Valor</th><th>Etapa</th><th>Responsável</th><th></th></tr></thead><tbody>
                 <tr><td>Cliente 10914</td><td class="mono">CTR-19914</td><td>02/08/2026</td><td><span class="status-badge status-badge--negative">23 dias</span></td><td>R$ 489,70</td><td>Em análise</td><td>Financeiro</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Histórico financeiro CTR-19914">Ver histórico</button></td></tr>
                 <tr><td>Cliente 10731</td><td class="mono">CTR-19731</td><td>08/08/2026</td><td><span class="status-badge status-badge--warning">17 dias</span></td><td>R$ 359,90</td><td>Aguardando aprovação</td><td>Danielle</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Histórico financeiro CTR-19731">Ver histórico</button></td></tr>
@@ -535,9 +464,9 @@
 
           <section class="page" data-page="retencao" aria-labelledby="retention-title" hidden>
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Risco explicável</span><h1 id="retention-title">Retenção</h1><p>Casos priorizados por sinais visíveis, nunca por uma pontuação opaca.</p></div><button class="button button--outline" type="button" data-toast-message="Novo caso registrado apenas no modo demonstrativo.">Criar caso interno</button></div>
-            <div class="metric-ribbon"><div><span>Casos em risco</span><strong>84</strong><small>regras demonstrativas</small></div><div><span>Risco alto</span><strong>18</strong><small>ação em até 24 horas</small></div><div><span>Sem responsável</span><strong>7</strong><small>aguardando triagem</small></div><div class="metric-ribbon__highlight"><span>Retidos no período</span><strong>31</strong><small>resultado interno</small></div></div>
+            <div class="metric-ribbon" data-demo-only hidden><div><span>Casos em risco</span><strong>84</strong><small>regras demonstrativas</small></div><div><span>Risco alto</span><strong>18</strong><small>ação em até 24 horas</small></div><div><span>Sem responsável</span><strong>7</strong><small>aguardando triagem</small></div><div class="metric-ribbon__highlight"><span>Retidos no período</span><strong>31</strong><small>resultado interno</small></div></div>
             <div class="content-split content-split--retention">
-              <article class="panel table-panel"><div class="panel-heading"><div><span class="panel-kicker">Fila explicável</span><h2>Casos prioritários</h2></div><span class="table-count">18 em risco alto</span></div>
+              <article class="panel table-panel" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Fila explicável</span><h2>Casos prioritários</h2></div><span class="table-count">18 em risco alto</span></div>
                 <div class="case-list"><button type="button" data-open-drawer data-drawer-title="Caso de retenção · Cliente 10482"><span class="risk-score risk-score--high">Alto</span><span class="case-main"><strong>Cliente 10482</strong><small>CTR-19482 · R$ 126,64/mês</small><span class="signal-list"><i>3 atrasos</i><i>2 O.S.</i><i>downgrade</i></span></span><span class="case-owner">Sem responsável</span><span aria-hidden="true">→</span></button>
                 <button type="button" data-open-drawer data-drawer-title="Caso de retenção · Cliente 11816"><span class="risk-score risk-score--high">Alto</span><span class="case-main"><strong>Cliente 11816</strong><small>CTR-20816 · R$ 113,73/mês</small><span class="signal-list"><i>inadimplência</i><i>cancelamento solicitado</i></span></span><span class="case-owner">Danielle</span><span aria-hidden="true">→</span></button>
                 <button type="button" data-open-drawer data-drawer-title="Caso de retenção · Cliente 11307"><span class="risk-score risk-score--medium">Médio</span><span class="case-main"><strong>Cliente 11307</strong><small>CTR-20317 · R$ 139,90/mês</small><span class="signal-list"><i>O.S. recorrente</i><i>nota baixa</i></span></span><span class="case-owner">Comercial</span><span aria-hidden="true">→</span></button></div>
@@ -548,23 +477,27 @@
 
           <section class="page" data-page="planos" aria-labelledby="plans-title" hidden>
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Receita recorrente</span><h1 id="plans-title">Planos</h1><p>Acompanhe upgrades, downgrades e o efeito das migrações na receita.</p></div></div>
-            <div class="metric-ribbon"><div><span>Upgrades</span><strong>32</strong><small>+R$ 539,12</small></div><div><span>Downgrades</span><strong>79</strong><small>-R$ 2.061,07</small></div><div class="metric-ribbon__risk"><span>Saldo líquido</span><strong>-R$ 1.521,95</strong><small>atenção comercial</small></div><div><span>Relação</span><strong>2,5×</strong><small>mais downgrades</small></div></div>
-            <div class="dashboard-grid"><article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Matriz de migração</span><h2>De onde os clientes saem</h2></div><span class="demo-chip demo-chip--light">DADOS ILUSTRATIVOS</span></div>
-              <div class="migration-matrix"><div class="matrix-head"><span>Origem → destino</span><span>400 Mega</span><span>600 Mega</span><span>800 Mega</span></div><div><strong>300 Mega</strong><span>—</span><span class="matrix-positive">12</span><span class="matrix-positive">5</span></div><div><strong>400 Mega</strong><span class="matrix-negative">26</span><span>—</span><span class="matrix-positive">9</span></div><div><strong>600 Mega</strong><span class="matrix-negative">38</span><span class="matrix-negative">15</span><span>—</span></div></div>
-            </article><article class="panel"><div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Diagnóstico</span><h2>Pressão no ticket</h2></div></div><p class="large-copy">Os downgrades representam <strong>71%</strong> das mudanças de plano demonstrativas.</p><div class="callout"><span>Hipótese a validar</span><p>Preço, percepção de valor ou campanha de concorrência podem estar conduzindo as migrações.</p></div><button class="panel-action" type="button" data-open-drawer data-drawer-title="Hipóteses de downgrade">Ver evidências necessárias <span aria-hidden="true">→</span></button></article></div>
+            <div class="metric-ribbon"><div><span>Upgrades</span><strong data-live-upgrades>—</strong><small>mudanças para plano maior</small></div><div><span>Downgrades</span><strong data-live-downgrades>—</strong><small>mudanças para plano menor</small></div><div class="metric-ribbon__risk"><span>Saldo líquido</span><strong data-live-plan-delta>—</strong><small>efeito mensal estimado</small></div><div><span>Relação</span><strong data-live-plan-ratio>—</strong><small>downgrades por upgrade</small></div></div>
+            <div class="dashboard-grid"><article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Matriz de migração</span><h2>De onde os clientes saem</h2></div><span class="demo-chip demo-chip--light" data-live-plan-transition-state>Aguardando dados do IXC</span></div>
+              <div class="migration-matrix" data-live-plan-transitions><div class="matrix-head"><span>Origem → destino</span><span>Quantidade</span><span>Competência</span><span>Fonte</span></div><div><strong>Aguardando transições do IXC</strong><span>—</span><span>—</span><span>—</span></div></div>
+            </article><article class="panel" data-demo-only hidden><div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Diagnóstico</span><h2>Pressão no ticket</h2></div></div><p class="large-copy">Os downgrades representam <strong>71%</strong> das mudanças de plano demonstrativas.</p><div class="callout"><span>Hipótese a validar</span><p>Preço, percepção de valor ou campanha de concorrência podem estar conduzindo as migrações.</p></div><button class="panel-action" type="button" data-open-drawer data-drawer-title="Hipóteses de downgrade">Ver evidências necessárias <span aria-hidden="true">→</span></button></article></div>
+            <article class="panel">
+              <div class="panel-heading"><div><span class="panel-kicker">Cadastro do IXC</span><h2>Nomes dos planos</h2></div><span class="demo-chip demo-chip--light" data-live-plan-catalog-state>Aguardando catálogo</span></div>
+              <div class="plan-catalog" data-live-plan-catalog><p>Aguardando os nomes cadastrados no IXC.</p></div>
+            </article>
           </section>
 
           <section class="page" data-page="qualidade" aria-labelledby="quality-title" hidden>
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Suporte</span><h1 id="quality-title">Qualidade da Conexão</h1><p>Ocorrências percebidas pelos clientes e registradas no atendimento.</p></div></div>
             <div class="notice notice--info"><strong>Leitura por proxy.</strong> Os indicadores abaixo usam reclamações e ordens de serviço. Telemetria de rede ainda não está configurada.</div>
-            <div class="metric-ribbon"><div><span>O.S. abertas</span><strong>64</strong><small>dados ilustrativos</small></div><div><span>Recorrentes</span><strong>17</strong><small>mesmo contrato em 30 dias</small></div><div><span>Tempo médio</span><strong>11h 42m</strong><small>até a resolução</small></div><div class="metric-ribbon__risk"><span>Cancelamentos ligados</span><strong>28</strong><small>insatisfação com conexão</small></div></div>
-            <div class="dashboard-grid"><article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Concentração</span><h2>Regiões com recorrência</h2></div><span class="source-tag">O.S. IXC</span></div><div class="region-list"><div><span>Bragança · Centro</span><i style="--region: 86%"></i><strong>42</strong></div><div><span>Vila Sinhá</span><i style="--region: 64%"></i><strong>31</strong></div><div><span>Aldeia</span><i style="--region: 44%"></i><strong>21</strong></div><div><span>Augusto Corrêa</span><i style="--region: 31%"></i><strong>15</strong></div></div></article><article class="panel integration-placeholder"><span class="integration-mark" aria-hidden="true">⌁</span><span class="panel-kicker">Telemetria real</span><h2>Monitoramento não configurado</h2><p>Conecte Zabbix, Grafana ou OLT para disponibilidade, latência, perda e incidentes.</p><span class="status-badge">Não configurado</span></article></div>
+            <div class="metric-ribbon"><div><span>O.S. abertas</span><strong data-live-service-open>—</strong><small data-live-operational-state>aguardando leitura do IXC</small></div><div><span>O.S. vencidas</span><strong data-live-service-overdue>—</strong><small>fora da janela</small></div><div><span>Atendimentos abertos</span><strong data-live-support-open>—</strong><small>fila de suporte</small></div><div class="metric-ribbon__risk"><span>Atendimentos vencidos</span><strong data-live-support-overdue>—</strong><small>prioridade operacional</small></div></div>
+            <div class="dashboard-grid"><article class="panel panel--wide" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Concentração</span><h2>Regiões com recorrência</h2></div><span class="source-tag">O.S. IXC</span></div><div class="region-list"><div><span>Bragança · Centro</span><i style="--region: 86%"></i><strong>42</strong></div><div><span>Vila Sinhá</span><i style="--region: 64%"></i><strong>31</strong></div><div><span>Aldeia</span><i style="--region: 44%"></i><strong>21</strong></div><div><span>Augusto Corrêa</span><i style="--region: 31%"></i><strong>15</strong></div></div></article><article class="panel integration-placeholder"><span class="integration-mark" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 12.5a9 9 0 0 1 14 0M5.8 15.3a5.5 5.5 0 0 1 8.4 0"/></svg></span><span class="panel-kicker">Telemetria real</span><h2>Monitoramento não configurado</h2><p>Conecte Zabbix, Grafana ou OLT para disponibilidade, latência, perda e incidentes.</p><span class="status-badge">Não configurado</span></article></div>
           </section>
 
           <section class="page" data-page="dados" aria-labelledby="data-quality-title" hidden>
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Reconciliação</span><h1 id="data-quality-title">Qualidade dos Dados</h1><p>Diferenças que podem comprometer indicadores ou ações operacionais.</p></div><button class="button button--outline" type="button" data-toast-message="Verificação demonstrativa agendada.">Reverificar dados</button></div>
-            <div class="metric-ribbon"><div><span>Inconsistências</span><strong>37</strong><small>dados simulados</small></div><div><span>Críticas</span><strong>5</strong><small>afetam indicadores</small></div><div><span>Novas</span><strong>12</strong><small>desde a última carga</small></div><div class="metric-ribbon__highlight"><span>Resolvidas</span><strong>84%</strong><small>últimos 30 dias</small></div></div>
-            <article class="panel table-panel"><div class="panel-heading"><div><span class="panel-kicker">Evidências</span><h2>Inconsistências detectadas</h2></div><span class="table-count">5 críticas</span></div><div class="table-scroll"><table><thead><tr><th>Severidade</th><th>Tipo</th><th>Entidade</th><th>Fonte</th><th>Detectado</th><th>Status</th><th></th></tr></thead><tbody>
+            <div class="metric-ribbon" data-demo-only hidden><div><span>Inconsistências</span><strong>37</strong><small>dados simulados</small></div><div><span>Críticas</span><strong>5</strong><small>afetam indicadores</small></div><div><span>Novas</span><strong>12</strong><small>desde a última carga</small></div><div class="metric-ribbon__highlight"><span>Resolvidas</span><strong>84%</strong><small>últimos 30 dias</small></div></div>
+            <article class="panel table-panel" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Evidências</span><h2>Inconsistências detectadas</h2></div><span class="table-count">5 críticas</span></div><div class="table-scroll"><table><thead><tr><th>Severidade</th><th>Tipo</th><th>Entidade</th><th>Fonte</th><th>Detectado</th><th>Status</th><th></th></tr></thead><tbody>
               <tr><td><span class="severity severity--critical">Crítico</span></td><td>Título pago ainda aberto</td><td class="mono">TIT-88217</td><td>IXC × Supabase</td><td>há 12 min</td><td>Nova</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Divergência TIT-88217">Ver evidência</button></td></tr>
               <tr><td><span class="severity severity--critical">Crítico</span></td><td>Contrato ativo sem financeiro</td><td class="mono">CTR-20441</td><td>IXC</td><td>há 18 min</td><td>Em análise</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Divergência CTR-20441">Ver evidência</button></td></tr>
               <tr><td><span class="severity severity--warning">Atenção</span></td><td>Cancelamento sem motivo</td><td class="mono">CTR-19809</td><td>IXC</td><td>há 24 min</td><td>Triagem</td><td><button class="table-action" type="button" data-open-drawer data-drawer-title="Divergência CTR-19809">Ver evidência</button></td></tr>
@@ -577,33 +510,29 @@
               <div class="segmented-control" aria-label="Filtrar por severidade"><button type="button" data-alert-filter="todos" aria-pressed="true">Todos</button><button type="button" data-alert-filter="critico" aria-pressed="false">Críticos</button><button type="button" data-alert-filter="atencao" aria-pressed="false">Atenção</button><button type="button" data-alert-filter="estavel" aria-pressed="false">Estáveis</button></div>
               <label class="search-field"><span class="sr-only">Buscar alertas</span><input type="search" data-alert-search placeholder="Buscar alertas" /></label>
             </div>
-            <div class="alert-grid">
-              <article class="alert-card" data-alert-card data-severity="critico" data-alert-title="Sincronização do IXC atrasada"><div class="alert-card__top"><span class="severity severity--critical">Crítico</span><span class="mono">ALT-0041</span></div><h2>Sincronização do IXC atrasada</h2><p>A carga de contratos ultrapassou a janela operacional configurada.</p><dl><div><dt>Impacto</dt><dd>2.814 registros</dd></div><div><dt>Responsável</dt><dd>Integrações</dd></div><div><dt>Detectado</dt><dd>há 22 min</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Sincronização do IXC atrasada" data-drawer-copy="Alerta demonstrativo. Em produção, a evidência virá da execução do workflow no n8n.">Ver evidências <span aria-hidden="true">→</span></button></article>
-              <article class="alert-card" data-alert-card data-severity="critico" data-alert-title="Divergência financeira"><div class="alert-card__top"><span class="severity severity--critical">Crítico</span><span class="mono">ALT-0038</span></div><h2>Divergência financeira</h2><p>Cinco títulos têm estado diferente entre a origem e o consolidado.</p><dl><div><dt>Impacto</dt><dd>R$ 2.491,80</dd></div><div><dt>Responsável</dt><dd>Financeiro</dd></div><div><dt>Detectado</dt><dd>há 31 min</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Divergência financeira">Ver evidências <span aria-hidden="true">→</span></button></article>
-              <article class="alert-card" data-alert-card data-severity="critico" data-alert-title="Downgrades acima de upgrades"><div class="alert-card__top"><span class="severity severity--critical">Crítico</span><span class="mono">ALT-0032</span></div><h2>Downgrades acima de upgrades</h2><p>A relação demonstrativa chegou a 2,5 downgrades por upgrade.</p><dl><div><dt>Impacto</dt><dd>-R$ 1.521,95</dd></div><div><dt>Responsável</dt><dd>Comercial</dd></div><div><dt>Detectado</dt><dd>hoje, 09:10</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Downgrades acima de upgrades">Ver evidências <span aria-hidden="true">→</span></button></article>
-              <article class="alert-card" data-alert-card data-severity="atencao" data-alert-title="Mudança sem cobertura recorrente"><div class="alert-card__top"><span class="severity severity--warning">Atenção</span><span class="mono">ALT-0029</span></div><h2>Mudança sem cobertura recorrente</h2><p>O motivo permanece entre as principais causas de cancelamento.</p><dl><div><dt>Impacto</dt><dd>A validar</dd></div><div><dt>Responsável</dt><dd>Expansão</dd></div><div><dt>Detectado</dt><dd>ontem, 16:42</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Mudança sem cobertura recorrente">Ver evidências <span aria-hidden="true">→</span></button></article>
-              <article class="alert-card" data-alert-card data-severity="estavel" data-alert-title="Inadimplência abaixo de três por cento"><div class="alert-card__top"><span class="severity severity--stable">Estável</span><span class="mono">ALT-0024</span></div><h2>Inadimplência abaixo de 3%</h2><p>O indicador demonstrativo permanece em 2% no período.</p><dl><div><dt>Resultado</dt><dd>R$ 69.989,31</dd></div><div><dt>Responsável</dt><dd>Financeiro</dd></div><div><dt>Atualizado</dt><dd>há 8 min</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Inadimplência abaixo de 3%">Ver indicador <span aria-hidden="true">→</span></button></article>
+            <div class="alert-grid" data-live-alert-list>
+              <div class="data-empty-inline"><strong>Alertas aguardando dados</strong><span>Os alertas serão exibidos somente quando vierem do snapshot sincronizado.</span></div>
             </div>
             <div class="empty-state" data-alert-empty hidden><span aria-hidden="true">⌕</span><h2>Nenhum alerta encontrado</h2><p>Ajuste a busca ou selecione outra severidade.</p></div>
           </section>
 
           <section class="page" data-page="integracoes" aria-labelledby="integrations-title" hidden>
-            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Fluxo de dados</span><h1 id="integrations-title">Integrações e Sincronização</h1><p>Estado sanitizado de cada etapa, sem expor credenciais.</p></div><button class="button button--outline" type="button" data-toast-message="Atualização demonstrativa solicitada.">Atualizar estado</button></div>
+            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Fluxo de dados</span><h1 id="integrations-title">Integrações e Sincronização</h1><p>Estado sanitizado de cada etapa, sem expor credenciais.</p></div><button class="button button--outline" type="button" data-refresh-live>Atualizar estado</button></div>
             <section class="data-pipeline" aria-label="Pipeline de integração"><div class="pipeline-node pipeline-node--source"><span>Fonte oficial</span><strong>IXC Soft</strong><small>Leitura programada</small></div><i aria-hidden="true">→</i><div class="pipeline-node"><span>Orquestração</span><strong>n8n</strong><small>Paginação &amp; normalização</small></div><i aria-hidden="true">→</i><div class="pipeline-node"><span>Histórico</span><strong>Supabase</strong><small>RLS &amp; indicadores</small></div><i aria-hidden="true">→</i><div class="pipeline-node pipeline-node--output"><span>Decisão</span><strong>Painel</strong><small>Leitura por papel</small></div></section>
             <div class="integration-grid">
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">IXC</span><span class="status-badge status-badge--positive" data-live-ixc-status>Conectado · demo</span></div><h2>IXC Soft</h2><dl><div><dt>Última leitura</dt><dd data-live-ixc-read>há 8 min</dd></div><div><dt>Registros</dt><dd data-live-records>2.814</dd></div><div><dt>Latência</dt><dd>via n8n</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do IXC Soft">Ver estado sanitizado</button></article>
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">n8n</span><span class="status-badge status-badge--positive" data-live-n8n-status>Ativo · demo</span></div><h2>n8n</h2><dl><div><dt>Workflow</dt><dd>Sync IXC → painel</dd></div><div><dt>Última execução</dt><dd data-live-n8n-run>pendente</dd></div><div><dt>Estado</dt><dd data-live-n8n-state>aguardando publicação</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Execuções do n8n">Ver execuções</button></article>
-              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">SB</span><span class="status-badge status-badge--positive" data-live-supabase-status>Saudável · demo</span></div><h2>Supabase</h2><dl><div><dt>Última gravação</dt><dd data-live-supabase-write>há 8 min</dd></div><div><dt>Fila</dt><dd>0 pendentes</dd></div><div><dt>Leitura</dt><dd>RLS ativa</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do Supabase">Ver consolidação</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">IXC</span><span class="status-badge status-badge--warning" data-live-ixc-status>Aguardando snapshot</span></div><h2>IXC Soft</h2><dl><div><dt>Última leitura</dt><dd data-live-ixc-read>—</dd></div><div><dt>Contratos recebidos</dt><dd data-live-records>—</dd></div><div><dt>Latência</dt><dd>via n8n</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do IXC Soft">Ver estado sanitizado</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">n8n</span><span class="status-badge status-badge--warning" data-live-n8n-status>Aguardando publicação</span></div><h2>n8n</h2><dl><div><dt>Workflow</dt><dd>Sync IXC → painel</dd></div><div><dt>Última execução</dt><dd data-live-n8n-run>—</dd></div><div><dt>sync_run</dt><dd class="mono" data-live-sync-run-id>—</dd></div><div><dt>Estado</dt><dd data-live-n8n-state>Aguardando snapshot</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Execuções do n8n">Ver execuções</button></article>
+              <article class="integration-card"><div class="integration-card__head"><span class="integration-monogram">SB</span><span class="status-badge status-badge--warning" data-live-supabase-status>Aguardando leitura</span></div><h2>Supabase</h2><dl><div><dt>Última gravação</dt><dd data-live-supabase-write>—</dd></div><div><dt>Fila</dt><dd>—</dd></div><div><dt>Leitura</dt><dd>Aguardando snapshot</dd></div></dl><button type="button" data-open-drawer data-drawer-title="Estado do Supabase">Ver consolidação</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">OPA</span><span class="status-badge">Não configurado</span></div><h2>Opa Suite</h2><p>Canal opcional para filas internas e comunicação autorizada.</p><button type="button" disabled>Requer autorização</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">WA</span><span class="status-badge">Não configurado</span></div><h2>WhatsApp</h2><p>Mensagens devem passar por aprovação humana antes do envio.</p><button type="button" disabled>Requer autorização</button></article>
               <article class="integration-card integration-card--inactive"><div class="integration-card__head"><span class="integration-monogram">NOC</span><span class="status-badge">Não configurado</span></div><h2>Monitoramento de rede</h2><p>Zabbix, Grafana ou OLT para telemetria técnica real.</p><button type="button" disabled>Requer configuração</button></article>
             </div>
-            <article class="panel table-panel"><div class="panel-heading"><div><span class="panel-kicker">Execuções</span><h2>Histórico de sincronização</h2></div><span class="table-count">Últimas 24 horas</span></div><div class="table-scroll"><table><thead><tr><th>Execução</th><th>Recurso</th><th>Início</th><th>Duração</th><th>Lidos</th><th>Atualizados</th><th>Erros</th><th>Estado</th></tr></thead><tbody><tr><td class="mono">SYNC-8F32</td><td>Contratos</td><td>16:24:02</td><td>01m 48s</td><td>2.814</td><td>41</td><td>0</td><td><span class="status-badge status-badge--positive">Concluída</span></td></tr><tr><td class="mono">SYNC-8F31</td><td>Financeiro</td><td>15:54:01</td><td>02m 11s</td><td>7.492</td><td>118</td><td>5</td><td><span class="status-badge status-badge--warning">Parcial</span></td></tr><tr><td class="mono">SYNC-8F30</td><td>O.S.</td><td>15:24:02</td><td>00m 52s</td><td>604</td><td>27</td><td>0</td><td><span class="status-badge status-badge--positive">Concluída</span></td></tr></tbody></table></div></article>
+            <article class="panel table-panel" data-demo-only hidden><div class="panel-heading"><div><span class="panel-kicker">Execuções</span><h2>Histórico de sincronização</h2></div><span class="table-count">Últimas 24 horas</span></div><div class="table-scroll"><table><thead><tr><th>Execução</th><th>Recurso</th><th>Início</th><th>Duração</th><th>Lidos</th><th>Atualizados</th><th>Erros</th><th>Estado</th></tr></thead><tbody><tr><td class="mono">SYNC-8F32</td><td>Contratos</td><td>16:24:02</td><td>01m 48s</td><td>2.814</td><td>41</td><td>0</td><td><span class="status-badge status-badge--positive">Concluída</span></td></tr><tr><td class="mono">SYNC-8F31</td><td>Financeiro</td><td>15:54:01</td><td>02m 11s</td><td>7.492</td><td>118</td><td>5</td><td><span class="status-badge status-badge--warning">Parcial</span></td></tr><tr><td class="mono">SYNC-8F30</td><td>O.S.</td><td>15:24:02</td><td>00m 52s</td><td>604</td><td>27</td><td>0</td><td><span class="status-badge status-badge--positive">Concluída</span></td></tr></tbody></table></div></article>
           </section>
 
           <section class="page" data-page="administracao" aria-labelledby="admin-title" hidden>
             <div class="page-intro page-intro--compact"><div><span class="eyebrow">Acesso administrativo</span><h1 id="admin-title">Administração</h1><p>Permissões, regras, limiares e governança do painel.</p></div><span class="status-badge status-badge--warning">Modo demonstrativo</span></div>
-            <div class="admin-grid">
+            <div class="admin-grid" data-demo-only hidden>
               <article class="admin-card"><span class="admin-index">01</span><h2>Usuários e papéis</h2><p>Gestão, Financeiro, Comercial, Suporte e Administração.</p><strong>12 usuários ativos</strong><button type="button" data-toast-message="Gestão de usuários aberta em modo demonstrativo.">Gerenciar acessos</button></article>
               <article class="admin-card"><span class="admin-index">02</span><h2>Regras de alerta</h2><p>Condições, janelas, severidade, responsáveis e destinos.</p><strong>8 regras ativas</strong><button type="button" data-toast-message="Regras abertas em modo demonstrativo.">Revisar regras</button></article>
               <article class="admin-card"><span class="admin-index">03</span><h2>Agenda de sincronização</h2><p>Frequência por recurso e limites de concorrência.</p><strong>A cada 30 minutos</strong><button type="button" data-toast-message="Agenda aberta em modo demonstrativo.">Ver agenda</button></article>
@@ -616,22 +545,22 @@
       </div>
 
       <nav class="mobile-nav" aria-label="Navegação móvel">
-        <button type="button" data-page-target="visao-geral" aria-current="page"><span aria-hidden="true">⌂</span><small>Visão</small></button>
-        <button type="button" data-page-target="movimentos"><span aria-hidden="true">↕</span><small>Movimento</small></button>
-        <button type="button" data-page-target="financeiro"><span aria-hidden="true">R$</span><small>Financeiro</small></button>
-        <button type="button" data-page-target="alertas"><span aria-hidden="true">!</span><small>Alertas</small></button>
-        <button type="button" data-page-target="integracoes"><span aria-hidden="true">···</span><small>Mais</small></button>
+        <button type="button" data-page-target="visao-geral" aria-current="page"><small>Visão</small></button>
+        <button type="button" data-page-target="movimentos"><small>Comercial</small></button>
+        <button type="button" data-page-target="financeiro"><small>Financeiro</small></button>
+        <button type="button" data-page-target="alertas"><small>Alertas</small></button>
+        <button type="button" data-page-target="integracoes"><small>Sistema</small></button>
       </nav>
     </div>
 
     <aside class="detail-drawer" id="detail-drawer" aria-hidden="true" aria-labelledby="drawer-title">
       <div class="drawer-scrim" data-close-drawer></div>
       <div class="drawer-panel">
-        <div class="drawer-header"><div><span class="eyebrow">Detalhamento</span><h2 id="drawer-title" data-drawer-title>Evidências do indicador</h2></div><button class="icon-button icon-button--light" type="button" data-close-drawer aria-label="Fechar detalhes">×</button></div>
+        <div class="drawer-header"><div><span class="drawer-kicker">Detalhamento</span><h2 id="drawer-title" data-drawer-title>Evidências do indicador</h2></div><button class="icon-button icon-button--light" type="button" data-close-drawer aria-label="Fechar detalhes">×</button></div>
         <p class="drawer-lead" data-drawer-copy>Os registros abaixo são demonstrativos e serão substituídos pela trilha sincronizada do IXC.</p>
-        <div class="evidence-banner"><span class="status-light status-light--warning"></span><div><strong>Fonte demonstrativa</strong><span>Nenhuma chamada externa foi realizada.</span></div></div>
-        <section class="drawer-section"><span class="drawer-label">Fórmula</span><h3>Origem → normalização → indicador</h3><div class="formula-flow"><span>IXC</span><i>→</i><span>n8n</span><i>→</i><span>Supabase</span><i>→</i><span>Painel</span></div></section>
-        <section class="drawer-section"><span class="drawer-label">Linha do tempo</span><ol class="timeline"><li><i></i><div><strong>Indicador consolidado</strong><span>25/08/2026, 16:32</span></div></li><li><i></i><div><strong>Registros normalizados</strong><span>25/08/2026, 16:30</span></div></li><li><i></i><div><strong>Leitura da origem</strong><span>25/08/2026, 16:24</span></div></li></ol></section>
+        <div class="evidence-banner"><span class="status-light status-light--warning"></span><div><strong>Fonte do snapshot</strong><span>Valores calculados a partir da última sincronização válida.</span></div></div>
+        <section class="drawer-section"><span class="drawer-label">Origem dos dados</span><h3>IXC → n8n → Supabase → painel</h3><div class="formula-flow"><span>IXC</span><i>→</i><span>n8n</span><i>→</i><span>Supabase</span><i>→</i><span>Painel</span></div></section>
+        <section class="drawer-section"><span class="drawer-label">Trilha de sincronização</span><p class="drawer-empty">A linha do tempo de leituras aparece aqui após a primeira sincronização válida.</p></section>
         <section class="drawer-section"><span class="drawer-label">Ações permitidas</span><button class="button button--primary button--wide" type="button" data-toast-message="Responsável atribuído em modo demonstrativo.">Atribuir responsável</button><button class="button button--outline button--wide" type="button" data-toast-message="Nota registrada em modo demonstrativo.">Adicionar nota interna</button></section>
         <p class="drawer-footnote">Alterações de contrato, plano ou financeiro no IXC permanecem bloqueadas nesta fase.</p>
       </div>
