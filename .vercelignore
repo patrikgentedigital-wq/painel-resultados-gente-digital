@@ -1,0 +1,7 @@
+.git
+.vercel
+.env*
+supabase
+tests
+docs
+README.md

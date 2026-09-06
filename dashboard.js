@@ -22,7 +22,7 @@
     "2026-jul": {
       label: "2026 até julho",
       scope: "jan-jul",
-      freshness: "Dados demonstrativos",
+      freshness: "Aguardando snapshot",
     },
     "2025-jul": {
       label: "2025 até julho",
@@ -385,6 +385,16 @@
     return DATA_STATE_LABELS[String(state)] || "Estado não informado";
   }
 
+  function setConfidenceState(document, key, state, detail) {
+    const item = document.querySelector(`[data-confidence-item="${key}"]`);
+    const value = document.querySelector(`[data-live-confidence-${key}]`);
+    if (!item || !value) return;
+    const normalized = String(state || "unavailable").toLowerCase();
+    const tone = ["complete", "partial", "unavailable", "error"].includes(normalized) ? normalized : "unavailable";
+    item.dataset.state = tone;
+    value.textContent = detail || formatDataState(tone);
+  }
+
   function getSupabaseConfig(window) {
     const config = window?.PAINEL_SUPABASE_CONFIG;
     if (!config?.url || !config?.anonKey) return null;
@@ -689,10 +699,12 @@
     const coverageEnd = String(quality.coverage_end || "");
     const periodEnd = String(snapshot.period_end || "");
     const baseDataState = getContractDataState(snapshot);
+    const cancellationState = String(quality.cancellations_data_state || snapshot.cancellations_data_state || "");
     if (
       snapshot.sync_status === "error" ||
       quality.movement_data_state === "error" ||
       quality.plan_data_state === "error" ||
+      cancellationState === "error" ||
       baseDataState === "error"
     ) return "Erro na sincronização";
     if (snapshot.sync_status === "running") return "Sincronização em andamento";
@@ -702,6 +714,7 @@
       snapshot.operational_data_state === "partial" ||
       quality.movement_data_state === "partial" ||
       quality.plan_data_state === "partial" ||
+      cancellationState === "partial" ||
       baseDataState === "partial"
     ) {
       return "Dados parciais";
@@ -1143,6 +1156,38 @@
   function applyLiveSnapshot(document, snapshot, snapshots = []) {
     if (!snapshot) return null;
 
+    const financialHistory = document.querySelector("[data-financial-history]");
+    if (financialHistory) {
+      const table = document.createElement("table");
+      const head = document.createElement("thead");
+      const heading = document.createElement("tr");
+      ["Competência", "Previsto", "Recebido", "Em aberto", "% recebido"].forEach((label) => {
+        const cell = document.createElement("th"); cell.scope = "col"; cell.textContent = label; heading.appendChild(cell);
+      });
+      head.appendChild(heading);
+      const tbody = document.createElement("tbody");
+      dedupeSnapshots(snapshots.length ? snapshots : [snapshot])
+        .filter((row) => String(row.period_start).slice(0, 4) === String(snapshot.period_start).slice(0, 4) && row.period_start <= snapshot.period_start)
+        .sort((a, b) => a.period_start.localeCompare(b.period_start))
+        .forEach((row) => {
+          const metrics = deriveExecutiveMetrics(row);
+          const known = metrics.financialState === "complete";
+          const tr = document.createElement("tr");
+          const month = String(row.period_start).slice(0, 7).split("-").reverse().join("/");
+          [month, formatCurrencyOrDash(known ? metrics.dueAmount : null), formatCurrencyOrDash(known ? metrics.receivedAmount : null), formatCurrencyOrDash(known ? metrics.outstandingAmount : null), formatRate(known ? metrics.collectionRate : null)].forEach((value, index) => {
+            const td = document.createElement("td"); td.textContent = value;
+            if (index === 4 && known && metrics.collectionRate !== null) {
+              const meter = document.createElement("span"); meter.className = "financial-meter"; meter.setAttribute("aria-hidden", "true");
+              const fill = document.createElement("i"); fill.style.width = `${Math.max(0, Math.min(100, metrics.collectionRate * 100))}%`;
+              meter.appendChild(fill); td.appendChild(meter);
+            }
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      table.append(head, tbody); financialHistory.replaceChildren(table);
+    }
+
     const setText = (selector, value) => {
       document.querySelectorAll(selector).forEach((element) => {
         element.textContent = String(value);
@@ -1257,6 +1302,34 @@
     setText("[data-live-source-notice]", getLiveSourceNotice(snapshot));
     updateFreshnessLights(document, freshness);
 
+    const cancellationState = String(
+      quality.cancellations_data_state || snapshot.cancellations_data_state ||
+        (cancellations !== null ? "complete" : "unavailable"),
+    );
+    const commercialState = metrics.movementState === "complete" && baseDataState === "complete"
+      ? "complete"
+      : metrics.movementState === "error" || baseDataState === "error"
+        ? "error"
+        : metrics.movementState === "partial" || baseDataState === "partial"
+          ? "partial"
+          : "unavailable";
+    setConfidenceState(
+      document,
+      "commercial",
+      commercialState,
+      commercialState === "complete" ? "Base e movimentos confirmados" : formatDataState(commercialState),
+    );
+    setConfidenceState(document, "finance", metrics.financialState);
+    setConfidenceState(document, "operations", metrics.operationalState);
+    setConfidenceState(
+      document,
+      "cancellations",
+      cancellationState,
+      cancellationState === "complete" && cancellations !== null
+        ? `${formatInteger(cancellations)} no período`
+        : formatDataState(cancellationState),
+    );
+
     const receivedStack = document.querySelector("[data-live-received-stack]");
     const pendingStack = document.querySelector("[data-live-pending-stack]");
     const collectionRate = financialKnown ? metrics.collectionRate : null;
@@ -1327,6 +1400,7 @@
   }
 
   function markLiveUnavailable(document, reason) {
+    document.querySelectorAll("[data-financial-history]").forEach((element) => { element.textContent = "Histórico financeiro indisponível."; });
     const message = String(reason || "Leitura indisponível");
     const statusSelector = [
       "[data-live-ixc-status]",
@@ -1387,6 +1461,7 @@
 
     function activatePage(pageId, options) {
       if (!PAGE_TITLES[pageId]) return;
+      const changed = body.dataset.activePage !== pageId;
 
       pages.forEach((page) => {
         page.hidden = page.dataset.page !== pageId;
@@ -1403,18 +1478,15 @@
       if (pageTitle) pageTitle.textContent = PAGE_TITLES[pageId];
       document.title = `${PAGE_TITLES[pageId]} · Painel de Resultados`;
       body.dataset.activePage = pageId;
-
-      if (pageId !== "visao-geral") {
-        const page = pages.find((candidate) => candidate.dataset.page === pageId);
-        if (page && !page.querySelector("[data-demo-data-notice]")) {
-          const notice = document.createElement("div");
-          notice.className = "notice notice--warning demo-data-notice";
-          notice.dataset.demoDataNotice = "true";
-          notice.setAttribute("role", "status");
-          notice.textContent = "Atenção: os blocos sem marcador live ainda são demonstrativos e não devem ser usados para decisão.";
-          page.prepend(notice);
-        }
+      const selectedPage = pages.find((page) => page.dataset.page === pageId);
+      if (changed && !window?.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+        selectedPage?.getAnimations?.().forEach((animation) => animation.cancel());
+        selectedPage?.animate?.([
+          { opacity: 0, transform: "translateY(10px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ], { duration: 240, easing: "cubic-bezier(.2,.7,.2,1)" });
       }
+      if (changed && !options?.skipFocus) window?.scrollTo?.({ top: 0, behavior: "instant" });
 
       if (!options?.skipHash && window?.history?.replaceState) {
         window.history.replaceState(null, "", `#${pageId}`);
@@ -1454,7 +1526,7 @@
       if (drawerCopy) {
         drawerCopy.textContent =
           trigger.dataset.drawerCopy ||
-          "Os registros abaixo são demonstrativos e serão substituídos pela trilha sincronizada do IXC.";
+          "Use esta camada para entender a origem e o corte do indicador selecionado.";
       }
       drawer.setAttribute("aria-hidden", "false");
       body.classList.add("drawer-open");
@@ -1572,7 +1644,7 @@
       const period = livePeriod || PERIODS[selectedKey] || {
         label: `${fallbackYear} · aguardando snapshot`,
         scope: "monthly",
-        freshness: "Dados demonstrativos",
+        freshness: "Aguardando snapshot",
       };
       document.querySelectorAll("[data-period-label]").forEach((label) => {
         label.textContent = livePeriod?.label || livePeriodLabel || period.label;

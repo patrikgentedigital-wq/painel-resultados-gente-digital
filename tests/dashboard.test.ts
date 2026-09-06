@@ -173,15 +173,15 @@ describe("contrato do Painel de Resultados", () => {
     expect(document.title).toContain("Financeiro");
   });
 
-  it("sinaliza blocos demonstrativos nos módulos que ainda não têm dados live completos", () => {
+  it("mantém os módulos limpos e reserva estados de cobertura para os próprios indicadores", () => {
     const { dom } = loadPrototype();
     const movementsLink = dom.window.document.querySelector<HTMLElement>('[data-page-target="movimentos"]');
 
     movementsLink?.click();
 
     const notice = dom.window.document.querySelector('[data-demo-data-notice]');
-    expect(notice).not.toBeNull();
-    expect(notice?.textContent).toContain("demonstrativos");
+    expect(notice).toBeNull();
+    expect(dom.window.document.querySelector(".filter-scope")?.textContent).toContain("todas as filiais autorizadas");
   });
 
   it("não publica nenhum bloco demonstrativo no escopo da CEO", () => {

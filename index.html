@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#101315" />
+    <meta name="theme-color" content="#102a2e" />
     <meta
       name="description"
       content="Painel de Resultados da Gente Digital — crescimento, recebimentos e operação."
@@ -13,12 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260906.1" />
     <script src="app-config.js" defer></script>
-    <script src="dashboard.js" defer></script>
+    <script src="dashboard.js?v=20260906.1" defer></script>
   </head>
   <body data-active-page="visao-geral">
     <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
@@ -32,18 +32,18 @@
         <div class="login-panel__content">
           <span class="eyebrow">Acesso restrito</span>
           <h1 id="login-title">Acesse o Painel de Resultados</h1>
-          <p>Entre com seu e-mail e senha do Supabase Auth. Se preferir, solicite um link de uso único.</p>
+          <p>Use seu e-mail corporativo para acessar os resultados.</p>
           <form id="login-form" novalidate>
             <label for="login-email">E-mail corporativo</label>
             <input id="login-email" type="email" autocomplete="username" placeholder="nome@gentedigital.com.br" />
             <label for="login-password">Senha</label>
-            <input id="login-password" type="password" autocomplete="current-password" placeholder="Sua senha do Supabase Auth" />
+            <input id="login-password" type="password" autocomplete="current-password" placeholder="Sua senha" />
             <p class="form-error" data-login-error role="alert" hidden></p>
             <p class="auth-status" data-login-status role="status" hidden></p>
             <button class="button button--primary button--wide" data-login-submit type="submit">Entrar com senha</button>
             <button class="button button--outline button--wide" data-login-link type="button">Enviar link por e-mail</button>
           </form>
-          <p class="login-footnote">Senha validada pelo Supabase Auth · link de uso único como alternativa · dados agregados protegidos</p>
+          <p class="login-footnote">Senha ou link de uso único. Acesso restrito à equipe autorizada.</p>
         </div>
       </div>
     </section>
@@ -68,7 +68,7 @@
           />
           <div class="product-name">
             <strong>Painel de Resultados</strong>
-            <span>Operação &amp; gestão</span>
+            <span>Gestão / Gente Digital</span>
           </div>
         </div>
 
@@ -116,8 +116,8 @@
             <img src="assets/gente-digital-logo.jpg" alt="Gente Digital" />
           </div>
           <div class="topbar-title">
-            <span class="topbar-kicker">Painel de Resultados</span>
-            <strong data-current-page-title>Visão Geral</strong>
+            <span class="topbar-kicker">Gente Digital / Resultados</span>
+            <strong data-current-page-title>Visão geral</strong>
           </div>
           <div class="topbar-controls">
             <label class="compact-field">
@@ -128,6 +128,10 @@
                 <option value="2025-completo">2025 completo</option>
               </select>
             </label>
+            <button class="button button--quiet" type="button" data-refresh-live aria-label="Atualizar dados do IXC">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 0-10.7-2L4 7.5"/><path d="M4 4.5v3h3"/><path d="M4 12a6 6 0 0 0 10.7 2l1.3-1.5"/><path d="M16 15.5v-3h-3"/></svg>
+              Atualizar
+            </button>
             <button class="button button--dark" type="button" data-open-export>
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5v10M10 13.5 6.5 10M10 13.5 13.5 10M4.5 15.5h11"/></svg>
               Exportar
@@ -138,53 +142,25 @@
         <main id="main-content" tabindex="-1">
           <section class="page" data-page="visao-geral" aria-labelledby="overview-title">
             <div class="page-intro">
-              <div>
-                <h1 id="overview-title">Visão geral</h1>
-                <p>
-                  Base, caixa e operação em
-                  <strong data-period-label>2026 até julho</strong>.
-                </p>
+              <div class="hero-copy">
+                <span class="eyebrow">Visão geral</span>
+                <h1 id="overview-title">Resultados da operação</h1>
+                <p>Contratos e recebimentos em <strong data-period-label>2026 até julho</strong>.</p>
+                <div class="hero-meta" aria-label="Escopo e atualização">
+                  <span class="scope-chip"><span class="scope-chip__dot" aria-hidden="true"></span>Todas as filiais autorizadas</span>
+                  <span class="hero-meta__time" data-live-updated>Última sincronização pendente</span>
+                </div>
               </div>
               <div class="freshness-stamp">
                 <span class="status-light status-light--warning" aria-hidden="true"></span>
                 <div>
-                  <strong>Última sincronização</strong>
-                  <span><span data-live-updated>Última sincronização pendente</span> · <span data-period-freshness>Dados demonstrativos</span></span>
+                  <strong data-live-period-state>Aguardando snapshot</strong>
+                  <span>IXC → n8n → Supabase · <span data-period-freshness>aguardando dados</span></span>
                 </div>
               </div>
             </div>
 
-            <div class="notice notice--warning" data-live-source-notice role="status">Aguardando snapshot do IXC para confirmar a cobertura da base.</div>
-
-            <section class="pulse-panel" aria-labelledby="pulse-title">
-              <div class="pulse-heading">
-                <h2 id="pulse-title">Estado da operação</h2>
-                <span class="live-badge" data-live-badge>Aguardando snapshot</span>
-              </div>
-              <div class="pulse-track" aria-label="Resumo operacional">
-                <div class="pulse-node">
-                  <span class="pulse-label">Crescimento líquido</span>
-                  <strong data-live-net-additions>—</strong>
-                  <small data-live-movement-copy>Aguardando leitura do IXC.</small>
-                </div>
-                <div class="pulse-node">
-                  <span class="pulse-label">Total recebido</span>
-                  <strong data-live-received>—</strong>
-                  <small data-live-finance-copy>Aguardando base financeira.</small>
-                </div>
-                <div class="pulse-node">
-                  <span class="pulse-label">Backlog vencido</span>
-                  <strong data-live-overdue-operations>—</strong>
-                  <small data-live-operational-state>Dados indisponíveis</small>
-                </div>
-                <div class="pulse-node">
-                  <span class="pulse-label">Atualização</span>
-                  <strong data-live-sync-age>—</strong>
-                  <small>IXC → n8n → Supabase</small>
-                </div>
-              </div>
-              <button class="panel-action panel-action--ghost" type="button" data-open-drawer data-drawer-title="Como este resumo é calculado" data-drawer-copy="Crescimento líquido, recebimentos e backlog são calculados a partir do snapshot sincronizado do IXC. Sem snapshot válido, os valores permanecem indisponíveis em vez de exibir zero.">Como este resumo é calculado <span aria-hidden="true">→</span></button>
-            </section>
+            <div class="notice notice--warning" data-live-source-notice role="status">Aguardando o primeiro snapshot do IXC para confirmar a cobertura.</div>
 
             <div class="kpi-grid" aria-label="Indicadores principais">
               <article class="kpi-card">
@@ -193,7 +169,7 @@
                   <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-active-base>—</strong>
-                <p>Contratos ativos no IXC.</p>
+                <p>Contratos ativos na última leitura do IXC.</p>
               </article>
               <article class="kpi-card kpi-card--accent">
                 <div class="kpi-topline">
@@ -201,7 +177,7 @@
                   <span class="source-tag source-tag--dark">n8n</span>
                 </div>
                 <strong data-live-net-additions>—</strong>
-                <p>Ativações menos cancelamentos.</p>
+                <p>Ativações menos cancelamentos confirmados.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
@@ -209,7 +185,7 @@
                   <span class="trend" data-live-collection-rate>—</span>
                 </div>
                 <strong class="kpi-currency" data-live-received-money>—</strong>
-                <p data-live-due-copy>Aguardando base financeira.</p>
+                <p data-live-due-copy>Aguardando totalização financeira.</p>
               </article>
               <article class="kpi-card">
                 <div class="kpi-topline">
@@ -217,7 +193,7 @@
                   <span class="source-tag">IXC</span>
                 </div>
                 <strong data-live-delinquency>—</strong>
-                <p data-live-outstanding-copy>Sem base financeira confiável.</p>
+                <p data-live-outstanding-copy>Sem evidência financeira completa.</p>
               </article>
             </div>
 
@@ -226,9 +202,6 @@
               <div><dt>Cancelamentos</dt><dd data-live-cancellations>—</dd><dd class="stat-sub" data-live-cancellation-copy>Aguardando snapshot.</dd></div>
               <div><dt>Churn</dt><dd data-live-churn>—</dd><dd class="stat-sub">Cancelamentos sobre a base ativa.</dd></div>
               <div><dt>Títulos vencidos</dt><dd data-live-overdue-titles>—</dd><dd class="stat-sub">Em atraso na base financeira.</dd></div>
-              <div><dt>Backlog operacional</dt><dd data-live-open-operations>—</dd><dd class="stat-sub">Registros abertos.</dd></div>
-              <div><dt>Backlog vencido</dt><dd data-live-overdue-operations>—</dd><dd class="stat-sub" data-live-overdue-operations-copy>Prazo ainda não calculado.</dd></div>
-              <div><dt>Saldo de planos</dt><dd data-live-plan-delta>—</dd><dd class="stat-sub" data-live-plan-copy>Aguardando alterações de plano.</dd></div>
             </dl>
 
             <div class="dashboard-grid">
@@ -253,18 +226,18 @@
                   <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
                   <div class="chart-month"><div class="bars"><i class="bar bar--activation" style="--height: 3%"></i><i class="bar bar--cancellation" style="--height: 3%"></i></div><span>—</span><small>—</small></div>
                 </div>
-                <p class="chart-note" data-live-chart-note>Série mensal será preenchida pelos eventos normalizados do IXC.</p>
+                <p class="chart-note" data-live-chart-note>O gráfico usa somente competências com cobertura confirmada.</p>
               </article>
 
               <article class="panel" aria-labelledby="priority-title">
                 <div class="panel-heading panel-heading--tight">
                   <div>
-                    <span class="panel-kicker">Fila de decisão</span>
+                    <span class="panel-kicker">Acompanhamento</span>
                     <h2 id="priority-title">Exige atenção</h2>
                   </div>
                 </div>
                 <div class="priority-list" data-live-priority-list>
-                  <div class="data-empty-inline"><strong>Prioridades aguardando dados</strong><span>A classificação será preenchida pelo snapshot do IXC.</span></div>
+                  <div class="data-empty-inline"><strong>Prioridades aguardando dados</strong><span>Os desvios aparecem quando o snapshot traz evidência suficiente.</span></div>
                 </div>
               </article>
 
@@ -276,7 +249,7 @@
                 <div class="rank-bars" data-live-cancellation-reasons>
                   <div class="data-empty-inline"><strong>Motivos aguardando dados</strong><span>O ranking será preenchido somente com motivos vindos do IXC.</span></div>
                 </div>
-                <p class="chart-note">Nenhum motivo é exibido sem evidência no snapshot sincronizado.</p>
+                <p class="chart-note">Só aparecem motivos presentes no snapshot sincronizado.</p>
               </article>
 
               <article class="panel" aria-labelledby="receipts-title">
@@ -292,24 +265,26 @@
                 <button class="panel-action" type="button" data-page-target="financeiro">Abrir visão financeira <span aria-hidden="true">→</span></button>
               </article>
 
-              <article class="panel panel--dark" aria-labelledby="plans-balance-title">
-                <div class="panel-heading panel-heading--tight">
-                  <div><span class="panel-kicker panel-kicker--dark">Planos</span><h2 id="plans-balance-title">Saldo de planos</h2></div>
-                </div>
-                <div class="plan-balance">
-                  <div><span>Upgrades</span><strong data-live-upgrades>—</strong><small>no período</small></div>
-                  <span class="balance-versus" aria-hidden="true">×</span>
-                  <div><span>Downgrades</span><strong data-live-downgrades>—</strong><small>no período</small></div>
-                </div>
-                <div class="negative-balance"><span>Saldo líquido</span><strong data-live-plan-delta>—</strong></div>
-                <button class="panel-action panel-action--dark" type="button" data-page-target="planos">Investigar migrações <span aria-hidden="true">→</span></button>
-              </article>
+
             </div>
+
+            <details class="confidence-rail"><summary><span>Qualidade dos dados</span><span class="coverage-toggle">Ver cobertura por fonte</span></summary>
+              <div class="confidence-heading">
+                <div><span class="panel-kicker">Confiança dos dados</span><h2 id="confidence-title">Cobertura por fonte</h2></div>
+                <span class="confidence-help">Estado por fonte · sem estimativas</span>
+              </div>
+              <div class="confidence-grid">
+                <div class="confidence-item" data-confidence-item="commercial"><span class="confidence-dot" aria-hidden="true"></span><div><strong>Comercial</strong><span data-live-confidence-commercial>Aguardando</span></div></div>
+                <div class="confidence-item" data-confidence-item="finance"><span class="confidence-dot" aria-hidden="true"></span><div><strong>Financeiro</strong><span data-live-confidence-finance>Aguardando</span></div></div>
+                <div class="confidence-item" data-confidence-item="operations"><span class="confidence-dot" aria-hidden="true"></span><div><strong>Operação</strong><span data-live-confidence-operations>Aguardando</span></div></div>
+                <div class="confidence-item" data-confidence-item="cancellations"><span class="confidence-dot" aria-hidden="true"></span><div><strong>Cancelamentos</strong><span data-live-confidence-cancellations>Aguardando</span></div></div>
+              </div>
+            </details>
 
             <article class="panel source-panel" aria-labelledby="source-title">
               <div class="panel-heading panel-heading--tight">
                 <div><span class="panel-kicker">Procedência</span><h2 id="source-title">Fonte e sincronização</h2></div>
-                <span class="status-badge status-badge--warning" data-live-period-state>Aguardando snapshot</span>
+                <button class="button button--quiet" type="button" data-open-drawer data-drawer-title="Origem dos indicadores" data-drawer-copy="Os indicadores usam a competência selecionada e os dados sincronizados do IXC. Quando a fonte não confirma a cobertura, o valor permanece indisponível.">Sobre os dados ↗</button>
               </div>
               <dl class="source-grid">
                 <div><dt>Origem</dt><dd data-live-ixc-status>Aguardando snapshot</dd></div>
@@ -326,12 +301,13 @@
           </section>
 
           <section class="page" data-page="movimentos" aria-labelledby="movements-title" hidden>
-            <div class="page-intro page-intro--compact">
-              <div><h1 id="movements-title">Comercial</h1><p>Ativações, cancelamentos e crescimento da base no período.</p></div>
+              <div class="page-intro page-intro--compact">
+              <div><span class="eyebrow">Crescimento e retenção</span><h1 id="movements-title">Comercial</h1><p>Ativações, cancelamentos e crescimento da base no período selecionado.</p></div>
               <button class="button button--outline" type="button" data-open-export>Baixar CSV</button>
             </div>
             <div class="filter-strip" aria-label="Filtros comerciais">
               <label><span>Plano dos cancelamentos</span><select data-live-plan-filter disabled title="Filtra a tabela de cancelamentos por mês abaixo."><option value="">Catálogo indisponível</option></select></label>
+              <span class="filter-scope"><strong>Escopo</strong> todas as filiais autorizadas · corte pela data de cancelamento</span>
             </div>
             <div class="metric-ribbon">
               <div><span>Ativações</span><strong data-live-activations>—</strong><small>na competência selecionada</small></div>
@@ -341,35 +317,37 @@
             </div>
             <article class="panel">
               <div class="panel-heading"><div><span class="panel-kicker">Relatório de contratos do IXC</span><h2>Cancelamentos por mês e plano</h2></div></div>
-              <p class="chart-note">Contratos inativos pela data de cancelamento, em todas as filiais autorizadas. O mês atual acumula até a data da sincronização. Desistências são um status separado.</p>
+              <p class="chart-note">Contratos inativos pela data de cancelamento. O mês atual acumula até o corte da sincronização; desistências são um status separado.</p>
               <div class="table-scroll" data-live-cancellation-history>Aguardando cancelamentos do IXC.</div>
             </article>
           </section>
 
           <section class="page" data-page="financeiro" aria-labelledby="finance-title" hidden>
-            <div class="page-intro page-intro--compact"><div><h1 id="finance-title">Financeiro</h1><p>Previsão, recebimento e inadimplência da competência.</p></div><div class="page-intro__actions"><span class="status-badge" data-live-finance-detail-state>Aguardando base financeira</span><button class="button button--outline" type="button" data-open-export>Baixar CSV</button></div></div>
+            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Caixa e cobrança</span><h1 id="finance-title">Financeiro</h1><p>Previsão, recebimento e inadimplência da competência.</p></div><div class="page-intro__actions"><span class="status-badge" data-live-finance-detail-state>Aguardando base financeira</span><button class="button button--outline" type="button" data-open-export>Baixar CSV</button></div></div>
             <div class="metric-ribbon">
               <div><span>Total previsto</span><strong data-live-due-summary>—</strong><small data-period-label>Competência selecionada</small></div>
               <div><span>Recebido</span><strong data-live-received-summary>—</strong><small data-live-collection-summary>— do previsto</small></div>
               <div><span>Não recebido</span><strong data-live-outstanding-summary>—</strong><small data-live-delinquency-summary>— do previsto</small></div>
               <div class="metric-ribbon__highlight"><span>Inadimplência</span><strong data-live-delinquency>—</strong><small data-live-delinquency-summary>— do previsto</small></div>
             </div>
+            <article class="panel financial-history-panel"><div class="panel-heading"><div><span class="panel-kicker">Evolução no ano</span><h2>Recebimentos por competência</h2></div><span class="chart-note">Valores em reais</span></div><div class="financial-history" data-financial-history>Aguardando competências.</div></article>
             <article class="panel">
               <div class="panel-heading panel-heading--tight"><div><span class="panel-kicker">Cobertura</span><h2>Sobre estes valores</h2></div></div>
-              <p class="chart-note" style="margin-top:0">Os valores vêm do snapshot mensal do IXC. Competências sem totalização válida aparecem como indisponíveis em vez de zero — o detalhamento por título fica restrito ao financeiro operacional.</p>
+              <p class="chart-note" style="margin-top:0">Os valores vêm do snapshot mensal do IXC. Competências sem totalização válida ficam indisponíveis; o painel não transforma ausência em zero.</p>
             </article>
           </section>
 
           <section class="page" data-page="planos" aria-labelledby="plans-title" hidden>
-            <div class="page-intro page-intro--compact"><div><h1 id="plans-title">Planos</h1><p>Upgrades, downgrades e o efeito das migrações na receita.</p></div></div>
-            <div class="metric-ribbon"><div><span>Upgrades</span><strong data-live-upgrades>—</strong><small>mudanças para plano maior</small></div><div><span>Downgrades</span><strong data-live-downgrades>—</strong><small>mudanças para plano menor</small></div><div class="metric-ribbon__risk"><span>Saldo líquido</span><strong data-live-plan-delta>—</strong><small>efeito mensal estimado</small></div><div><span>Relação</span><strong data-live-plan-ratio>—</strong><small>downgrades por upgrade</small></div></div>
-            <div class="dashboard-grid"><article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Matriz de migração</span><h2>De onde os clientes saem</h2></div><span class="demo-chip demo-chip--light" data-live-plan-transition-state>Aguardando dados do IXC</span></div>
-              <div class="migration-matrix" data-live-plan-transitions><div class="matrix-head"><span>Origem → destino</span><span>Quantidade</span><span>Competência</span><span>Fonte</span></div><div><strong>Aguardando transições do IXC</strong><span>—</span><span>—</span><span>—</span></div></div>
-            </article></div>
+            <div class="page-intro page-intro--compact"><div><span class="eyebrow">Portfólio</span><h1 id="plans-title">Planos</h1><p>Catálogo comercial e mudanças de plano registradas no IXC.</p></div></div>
             <article class="panel">
               <div class="panel-heading"><div><span class="panel-kicker">Cadastro do IXC</span><h2>Nomes dos planos</h2></div><span class="demo-chip demo-chip--light" data-live-plan-catalog-state>Aguardando catálogo</span></div>
               <div class="plan-catalog" data-live-plan-catalog><p>Aguardando os nomes cadastrados no IXC.</p></div>
             </article>
+            <div class="metric-ribbon"><div><span>Upgrades</span><strong data-live-upgrades>—</strong><small>mudanças para plano maior</small></div><div><span>Downgrades</span><strong data-live-downgrades>—</strong><small>mudanças para plano menor</small></div><div class="metric-ribbon__risk"><span>Saldo líquido</span><strong data-live-plan-delta>—</strong><small>efeito mensal estimado</small></div><div><span>Relação</span><strong data-live-plan-ratio>—</strong><small>downgrades por upgrade</small></div></div>
+            <div class="dashboard-grid"><article class="panel panel--wide"><div class="panel-heading"><div><span class="panel-kicker">Matriz de migração</span><h2>De onde os clientes saem</h2></div><span class="demo-chip demo-chip--light" data-live-plan-transition-state>Aguardando dados do IXC</span></div>
+              <div class="migration-matrix" data-live-plan-transitions><div class="matrix-head"><span>Origem → destino</span><span>Quantidade</span><span>Competência</span><span>Fonte</span></div><div><strong>Aguardando transições do IXC</strong><span>—</span><span>—</span><span>—</span></div></div>
+            </article></div>
+
           </section>
 
         </main>
@@ -387,10 +365,10 @@
       <div class="drawer-scrim" data-close-drawer></div>
       <div class="drawer-panel">
         <div class="drawer-header"><div><span class="drawer-kicker">Detalhamento</span><h2 id="drawer-title" data-drawer-title>Evidências do indicador</h2></div><button class="icon-button icon-button--light" type="button" data-close-drawer aria-label="Fechar detalhes">×</button></div>
-        <p class="drawer-lead" data-drawer-copy>Os registros abaixo são demonstrativos e serão substituídos pela trilha sincronizada do IXC.</p>
+        <p class="drawer-lead" data-drawer-copy>Use esta camada para entender a origem e o corte do indicador selecionado.</p>
         <div class="evidence-banner"><span class="status-light status-light--warning"></span><div><strong>Fonte do snapshot</strong><span>Valores calculados a partir da última sincronização válida.</span></div></div>
         <section class="drawer-section"><span class="drawer-label">Origem dos dados</span><h3>IXC → n8n → Supabase → painel</h3><div class="formula-flow"><span>IXC</span><i>→</i><span>n8n</span><i>→</i><span>Supabase</span><i>→</i><span>Painel</span></div></section>
-        <section class="drawer-section"><span class="drawer-label">Trilha de sincronização</span><p class="drawer-empty">A linha do tempo de leituras aparece aqui após a primeira sincronização válida.</p></section>
+        <section class="drawer-section"><span class="drawer-label">Trilha de sincronização</span><p class="drawer-empty">A execução, o corte e o identificador do snapshot ficam disponíveis na seção de procedência.</p></section>
         <p class="drawer-footnote">Este painel é somente leitura: nenhum valor é alterado no IXC por aqui.</p>
       </div>
     </aside>
